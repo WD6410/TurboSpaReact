@@ -1,0 +1,20 @@
+{
+  "prefixEnv": "TURBO",
+  "mode": "development",
+  "envMode": [
+    "production",
+    "staging",
+    "development",
+    "testing"
+  ],
+  "clearEnvWhenGenerate": true,
+  "logger": {
+    "api": "http://localhost:3000/write-log"
+  },
+  "enableSEO": true,
+  "assets": [
+    "icons",
+    "images",
+    "fonts"
+  ]
+}

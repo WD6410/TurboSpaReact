@@ -1,0 +1,14 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1976d2;
+  border-radius: 6px;
+  padding: 8px 6px;
+  width: 100%;
+  color: white;
+
+  &:focus {
+    outline: #6e9bc7 auto 1px;
+  }
+}
