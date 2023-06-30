@@ -9,21 +9,17 @@ export const mockSignIn = defineMock({
   '[POST]/sign-in': ({ data }) => {
     if (
       mockUser.has(data.username) &&
-      mockUser.get(data.username)?.pw === data.pw
+      String(mockUser.get(data.username)?.pw) === data.pw
     ) {
       return {
         status: 200,
         message: 'success',
+        token: window.crypto.randomUUID(),
       };
     }
-    return {
-      status: 500,
-      message: 'User not found',
-    };
+    throw new Error('User not found');
   },
   '/me': ({ query }) => {
-    console.log('run here');
-
     if (mockUser.has(query.username)) {
       return {
         status: 200,

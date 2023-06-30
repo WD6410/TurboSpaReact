@@ -1,17 +1,28 @@
-import { alovaInstance } from 'shared/config/apiConfig';
-import { useRequest } from 'alova';
 import styles from './SignInPageStyles.module.scss';
 import { classNamesFunc } from 'classnames-generics';
 import { SignInForm } from '../components';
 import { InternalErrorResult } from 'shared/ErrorBoundary/result/InternalErrorResult';
+import { signInService } from '../services/useSignInService';
+import { handleLoginSuccess } from '../utils';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 export function SignInPage() {
-  const { data, loading, error } = useRequest(() => alovaInstance.Get('/me'), {
-    initialData: null,
-    immediate: false,
-  });
-  console.log(data, loading, error);
+  const navigate = useNavigate();
+  const handleSignIn = (data: any) => {
+    signInService(data)
+      .then((result) => {
+        handleLoginSuccess(result);
+        toast.success('Login Success');
+        setTimeout(() => {
+          navigate('/');
+        }, 100);
+      })
+      .catch((error) => {
+        toast.error(error?.message);
+      });
+  };
 
   return (
     <div className={classNames(styles['signIn-Page'])}>
@@ -19,7 +30,7 @@ export function SignInPage() {
         <h1 className={classNames(styles['signIn-Page--title'])}>
           Welcome Turbo Application
         </h1>
-        <SignInForm />
+        <SignInForm onSubmit={handleSignIn} />
       </div>
     </div>
   );

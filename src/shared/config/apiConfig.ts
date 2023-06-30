@@ -13,7 +13,9 @@ export const alovaInstance = createAlova({
   requestAdapter: createAlovaMockAdapter([mockSignIn], {
     httpAdapter: GlobalFetch(),
     delay: 1500,
+    mockRequestLogger: true,
   }),
+
   baseURL: envConfig.turboApiUrl,
   responded: (response: any) => response.json(),
 });
