@@ -9,6 +9,7 @@ interface IProps {
 
 export function ErrorPageStrategy(props: IProps) {
   const routeError = useRouteError();
+  console.log('routeError', routeError, props);
 
   const error = props.error ?? routeError;
 

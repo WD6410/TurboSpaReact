@@ -52,5 +52,13 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'import/no-unresolved': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
   },
 };

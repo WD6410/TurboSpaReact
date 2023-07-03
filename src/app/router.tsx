@@ -1,4 +1,6 @@
+import { homeLoader } from 'features/home-page/loader/homeLoader';
 import { createBrowserRouter, ScrollRestoration } from 'react-router-dom';
+import { ErrorPageStrategy } from 'shared/ErrorBoundary';
 import { AppLayout } from 'shared/layouts';
 
 export const router = createBrowserRouter([
@@ -9,6 +11,7 @@ export const router = createBrowserRouter([
         <AppLayout.EmptyLayout />
       </>
     ),
+    errorElement: <ErrorPageStrategy />,
     children: [
       {
         path: '/',
@@ -18,6 +21,7 @@ export const router = createBrowserRouter([
             path: '/',
             index: true,
             lazy: () => import('../features/home-page/containers/HomePage'),
+            loader: homeLoader,
           },
         ],
       },
