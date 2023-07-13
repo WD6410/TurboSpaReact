@@ -1,21 +1,21 @@
-import { homeLoader } from 'features/home-page/loader/homeLoader';
+import { homeLoader } from 'features/home-page/loader';
 import { createBrowserRouter, ScrollRestoration } from 'react-router-dom';
 import { ErrorPageStrategy } from 'shared/ErrorBoundary';
-import { AppLayout } from 'shared/layouts';
+import { AuthLayout, EmptyLayout } from 'shared/layouts';
 
 export const router = createBrowserRouter([
   {
     element: (
       <>
         <ScrollRestoration getKey={(location) => location.pathname} />
-        <AppLayout.EmptyLayout />
+        <EmptyLayout />
       </>
     ),
     errorElement: <ErrorPageStrategy />,
     children: [
       {
         path: '/',
-        element: <AppLayout.AuthLayout />,
+        element: <AuthLayout />,
         children: [
           {
             path: '/',

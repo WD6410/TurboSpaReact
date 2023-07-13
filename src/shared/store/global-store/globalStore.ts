@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react';
 import { createStore, useStore } from 'zustand';
 import { IGlobalStore } from './types';
+import type { ColorScheme } from '@mantine/core';
 
 export type GlobalStore = ReturnType<typeof initializeGlobalStore>;
 
@@ -17,10 +18,11 @@ export const useGlobalStore = <T>(selector: (state: IGlobalStore) => T) => {
 };
 
 export const initializeGlobalStore = (preloadState: Partial<IGlobalStore>) => {
-  return createStore<IGlobalStore>((set) => {
+  return createStore<IGlobalStore>((set, get) => {
     return {
       ...preloadState,
       state: 'finished',
+      colorScheme: 'light',
       startup() {
         set({
           state: 'loading',
@@ -29,6 +31,12 @@ export const initializeGlobalStore = (preloadState: Partial<IGlobalStore>) => {
       finish() {
         set({
           state: 'finished',
+        });
+      },
+      toggleColorScheme(colorScheme?: ColorScheme) {
+        set({
+          colorScheme:
+            colorScheme ?? (get().colorScheme === 'dark' ? 'light' : 'dark'),
         });
       },
     };

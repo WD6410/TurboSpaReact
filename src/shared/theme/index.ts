@@ -1,3 +1,1 @@
-export { theme } from './chakraTheme';
-export { useBrandColor } from './useBrandColor';
-export { useSecondaryTextColor } from './useSecondaryTextColor';
+export { createCustomMantineTheme } from './mantineTheme.ts';

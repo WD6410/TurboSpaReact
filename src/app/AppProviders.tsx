@@ -1,14 +1,26 @@
-import { ChakraProvider } from '@chakra-ui/react';
 import { PropsWithChildren } from 'react';
-import { Toaster } from 'sonner';
-import { GlobalProvider } from 'shared/providers';
-import { theme } from 'shared/theme';
+import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { useGlobalStore } from 'shared/store';
+import { createCustomMantineTheme } from 'shared/theme';
+import Div100vh from 'react-div-100vh';
 
 export const AppProviders = ({ children }: PropsWithChildren) => {
+  const colorScheme = useGlobalStore((state) => state.colorScheme);
+  const toggleColorScheme = useGlobalStore((state) => state.toggleColorScheme);
+
   return (
-    <ChakraProvider theme={theme}>
-      <GlobalProvider>{children}</GlobalProvider>
-      <Toaster />
-    </ChakraProvider>
+    <ColorSchemeProvider
+      toggleColorScheme={toggleColorScheme}
+      colorScheme={colorScheme}
+    >
+      <MantineProvider
+        withNormalizeCSS
+        withGlobalStyles
+        withCSSVariables
+        theme={createCustomMantineTheme({ colorScheme })}
+      >
+        <Div100vh>{children}</Div100vh>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 };

@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'assets/fonts/index.css';
-import 'assets/styles/_reset.scss';
 import { App, AppProviders } from 'app';
+import { GlobalProvider } from 'shared/providers';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <AppProviders>
-      <App />
-    </AppProviders>
+    <GlobalProvider>
+      <AppProviders>
+        <App />
+      </AppProviders>
+    </GlobalProvider>
   </React.StrictMode>,
 );

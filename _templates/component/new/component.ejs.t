@@ -13,6 +13,6 @@ interface I<%= name %>Props {
   // declare props here
 }
 
-export default function <%= name %>(props: I<%= name %>Props) {
+export default function <%= name %>(_props: I<%= name %>Props) {
   return <div className={classNames(styles['<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>'])}><%= name %></div>;
 }

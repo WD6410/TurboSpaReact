@@ -1,6 +1,3 @@
-export { default as TextInput } from './TextInput';
-export { default as Footer } from './Footer';
-
-export { default as Navbar } from './Navbar';
-
-export { default as Button } from './Button';
+export { default as User } from './User';
+export { default as MainLink } from './MainLink';
+export { default as Logo } from './Logo';

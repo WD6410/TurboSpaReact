@@ -49,7 +49,7 @@ export default defineConfig(({ mode }) => {
         enabledMode: ['development', 'production'],
         global: {
           generate: true,
-          outFile: path.resolve(__dirname, './src/style.d.ts'),
+          outputFilePath: path.resolve(__dirname, './src/style.d.ts') as string,
         },
       }),
     ],
@@ -58,18 +58,5 @@ export default defineConfig(({ mode }) => {
     },
     mode: TurboConfig.mode,
     envPrefix: TurboConfig.prefixEnv,
-    // resolve: {
-    //   alias: [
-    //     { find: '@', replacement: path.resolve(__dirname, 'src') },
-    //     {
-    //       find: '@assets',
-    //       replacement: path.resolve(__dirname, 'src/assets'),
-    //     },
-    //     {
-    //       find: '@components',
-    //       replacement: path.resolve(__dirname, './src/components'),
-    //     },
-    //   ],
-    // },
   };
 });

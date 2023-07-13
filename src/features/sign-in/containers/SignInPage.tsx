@@ -1,11 +1,10 @@
 import styles from './SignInPageStyles.module.scss';
 import { classNamesFunc } from 'classnames-generics';
 import { SignInForm } from '../components';
-import { InternalErrorResult } from 'shared/ErrorBoundary/result/InternalErrorResult';
 import { signInService } from '../services/useSignInService';
 import { handleLoginSuccess } from '../utils';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
+import { ErrorPageStrategy } from 'shared/ErrorBoundary';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 export function SignInPage() {
@@ -14,13 +13,12 @@ export function SignInPage() {
     signInService(data)
       .then((result) => {
         handleLoginSuccess(result);
-        toast.success('Login Success');
         setTimeout(() => {
           navigate('/');
         }, 100);
       })
-      .catch((error) => {
-        toast.error(error?.message);
+      .catch((_error) => {
+        console.log(_error);
       });
   };
 
@@ -38,5 +36,5 @@ export function SignInPage() {
 export const Component = SignInPage;
 
 export const ErrorBoundary = () => {
-  return <InternalErrorResult />;
+  return <ErrorPageStrategy />;
 };

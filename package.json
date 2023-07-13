@@ -16,38 +16,52 @@
   },
   "dependencies": {
     "@alova/mock": "^1.5.0",
-    "@chakra-ui/icons": "^2.0.19",
-    "@chakra-ui/react": "^2.6.1",
-    "@commitlint/config-conventional": "^17.6.3",
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@tanstack/react-query": "^4.29.7",
-    "alova": "^2.7.1",
+    "@mantine/carousel": "^6.0.16",
+    "@mantine/core": "^6.0.16",
+    "@mantine/dates": "^6.0.16",
+    "@mantine/dropzone": "^6.0.16",
+    "@mantine/form": "^6.0.16",
+    "@mantine/hooks": "^6.0.16",
+    "@mantine/modals": "^6.0.16",
+    "@mantine/notifications": "^6.0.16",
+    "@mantine/nprogress": "^6.0.16",
+    "@mantine/prism": "^6.0.16",
+    "@mantine/spotlight": "^6.0.16",
+    "@mantine/tiptap": "^6.0.16",
+    "@tabler/icons-react": "^2.25.0",
+    "@tanstack/react-query": "^4.29.19",
+    "@tiptap/extension-link": "^2.0.3",
+    "@tiptap/react": "^2.0.3",
+    "@tiptap/starter-kit": "^2.0.3",
+    "alova": "^2.9.2",
     "classnames-generics": "^1.0.9",
+    "dayjs": "^1.11.9",
+    "embla-carousel-react": "^8.0.0-rc11",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
-    "framer-motion": "^10.12.12",
     "husky": "^8.0.3",
-    "intl-messageformat": "^10.3.5",
-    "ky": "^0.33.3",
     "lint-staged": "^13.2.2",
     "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
     "match-sorter": "^6.3.1",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
+    "react-div-100vh": "^0.7.0",
     "react-dom": "^18.2.0",
-    "react-error-boundary": "^4.0.4",
-    "react-router-dom": "^6.11.1",
-    "sonner": "^0.3.5",
+    "react-error-boundary": "^4.0.10",
+    "react-router-dom": "^6.14.1",
     "sort-by": "^1.2.0",
     "vite-plugin-svgr": "^3.2.0",
-    "zustand": "^4.3.8"
+    "zustand": "^4.3.9"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
     "@storybook/addon-essentials": "^7.0.11",
     "@storybook/addon-interactions": "^7.0.11",
     "@storybook/addon-links": "^7.0.11",
@@ -60,7 +74,6 @@
     "@types/lodash-es": "^4.17.7",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@types/sass": "^1.45.0",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
     "@vitejs/plugin-react-swc": "^3.0.0",
@@ -86,13 +99,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn run lint-staged"
     }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
-      "eslint --cache --fix"
+      "eslint --cache --fix",
+      "git add ."
     ]
   }
 }

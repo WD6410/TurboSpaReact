@@ -1,11 +1,2 @@
-import { AuthLayout } from './AuthLayout';
-import { EmptyLayout } from './EmptyLayout';
-import { Page } from './Page';
-import { PageHeader } from './PageHeader';
-
-export const AppLayout = {
-  EmptyLayout,
-  AuthLayout,
-  Page,
-  PageHeader,
-};
+export * from './AuthLayout.tsx';
+export * from './EmptyLayout.tsx';

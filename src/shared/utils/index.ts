@@ -4,8 +4,8 @@ import * as num from './number';
 import * as obj from './object';
 
 export const appUtils = {
-  str,
-  arr,
-  num,
-  obj,
+  ...str,
+  ...arr,
+  ...num,
+  ...obj,
 };
