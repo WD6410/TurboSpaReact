@@ -6,9 +6,10 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';
 import sassDts from 'vite-plugin-sass-dts';
 import { checker } from 'vite-plugin-checker';
+import { VitePWA } from 'vite-plugin-pwa';
+import path from 'path';
 
 import TurboConfig from './turbo.json';
-import path from 'path';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -31,6 +32,40 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react(),
+      VitePWA({
+        manifest: {
+          name: 'Turbo React App',
+          short_name: 'TRA',
+          start_url: '/',
+          display: 'standalone',
+          background_color: '#ffffff',
+          lang: 'en',
+          scope: '/',
+          icons: [
+            {
+              src: '/android-chrome-192x192.png',
+              sizes: '192x192',
+              type: 'image/png',
+              purpose: 'any maskable',
+            },
+            {
+              src: '/android-chrome-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any maskable',
+            },
+          ],
+          theme_color: '#ffffff',
+        },
+        registerType: 'autoUpdate',
+        devOptions: {
+          enabled: true,
+        },
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        },
+        injectRegister: 'script',
+      }),
       ViteMinifyPlugin(),
       svgr(), //https://github.com/aleclarson/vite-tsconfig-paths#readme
       tsconfigPaths({

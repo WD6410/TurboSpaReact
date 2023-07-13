@@ -1,5 +1,6 @@
+import React from 'react';
 import type { Preview } from '@storybook/react';
-
+import { HelmetProvider } from 'react-helmet-async';
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -10,6 +11,13 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    (StoryFn) => (
+      <HelmetProvider context={{}}>
+        <StoryFn />
+      </HelmetProvider>
+    ),
+  ],
 };
 
 export default preview;

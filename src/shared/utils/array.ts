@@ -44,11 +44,14 @@ export function arrayToObject<T, K extends string>(
   arr: T[],
   keyFn: (value: T) => K,
 ): Record<K, T> {
-  return arr.reduce((obj, item) => {
-    const key = keyFn(item);
-    obj[key] = item;
-    return obj;
-  }, {} as Record<K, T>);
+  return arr.reduce(
+    (obj, item) => {
+      const key = keyFn(item);
+      obj[key] = item;
+      return obj;
+    },
+    {} as Record<K, T>,
+  );
 }
 
 export function joinArray(arr: string[], separator: string): string {

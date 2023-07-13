@@ -4,6 +4,7 @@ import {
   GlobalStoreProvider,
   initializeGlobalStore,
 } from 'shared/store';
+import 'shared/translations';
 
 export default function GlobalProvider({
   children,

@@ -1,9 +1,9 @@
 ---
 inject: true
 to: src/shared/components/index.ts
-after: export
+before: export
+sh: yarn prettier
 ---
 
-export { default as <%= name %> } from './<%= name %>'
-
+export { default as <%= name %> } from './<%= name %>';
 
