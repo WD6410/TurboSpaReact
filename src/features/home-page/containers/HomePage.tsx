@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
 import { Seo } from 'shared/components';
+import { useTranslation } from 'react-i18next';
 
 export function HomePage() {
   const { t } = useTranslation(['common']);
@@ -10,7 +10,7 @@ export function HomePage() {
         description='A template code react common and reuse <3'
         type='preview'
       />
-      {t(['common:welcome'])}
+      {t('common:welcome')}
     </div>
   );
 }

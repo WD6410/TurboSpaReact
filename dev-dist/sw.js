@@ -90,7 +90,7 @@ define(['./workbox-16108a29'], function (workbox) {
       },
       {
         url: 'index.html',
-        revision: '0.g2njej5mcqo',
+        revision: '0.jj1o8g8m8o',
       },
     ],
     {},
