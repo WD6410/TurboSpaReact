@@ -84,9 +84,9 @@ Build storybook
 ```
 ## Demo
 
-[[Preview Web]()]
+[[Preview Web](https://turbo-react-app.surge.sh/)]
 
-[[Preview Storybook]()]
+[[Preview Storybook](https://turbo-react-app-storybook.surge.sh/)]
 
 ## Support
 
