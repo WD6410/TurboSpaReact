@@ -1,2 +1,2 @@
-export * as AppImages from './images';
-export * as AppIcons from './icons';
+export * from './images';
+export * from './icons';

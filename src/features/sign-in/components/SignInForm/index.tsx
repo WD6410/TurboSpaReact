@@ -8,9 +8,10 @@ const classNames = classNamesFunc<keyof typeof styles>();
 
 type SignInFormProps = {
   onSubmit: (values: any) => void;
+  isLoading: boolean;
 };
 
-export default function SignInForm({ onSubmit }: SignInFormProps) {
+export default function SignInForm({ onSubmit, isLoading }: SignInFormProps) {
   const form = useForm({
     initialValues: {
       email: '',
@@ -49,7 +50,9 @@ export default function SignInForm({ onSubmit }: SignInFormProps) {
           />
 
           <Group position='right' mt='md'>
-            <Button type='submit'>Submit</Button>
+            <Button disabled={isLoading} type='submit'>
+              Submit
+            </Button>
           </Group>
         </form>
       </Box>

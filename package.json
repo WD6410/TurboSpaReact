@@ -16,6 +16,7 @@
     "generate-assets": "node scripts/generateAssets.js"
   },
   "dependencies": {
+    "@alova/adapter-axios": "^1.1.1",
     "@alova/mock": "^1.5.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -37,6 +38,7 @@
     "@tiptap/react": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
     "alova": "^2.9.2",
+    "axios": "^1.4.0",
     "classnames-generics": "^1.0.9",
     "dayjs": "^1.11.9",
     "embla-carousel-react": "^8.0.0-rc11",

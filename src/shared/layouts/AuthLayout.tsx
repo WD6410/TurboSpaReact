@@ -2,16 +2,26 @@ import { Outlet } from 'react-router-dom';
 import {
   ActionIcon,
   AppShell,
+  Flex,
   Group,
   Header,
+  Menu,
   Navbar,
+  Stack,
+  Text,
   useMantineColorScheme,
 } from '@mantine/core';
 import { Logo, MainLink, User } from 'shared/components';
 import { IconMoonStars, IconSun } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
+import { EnglishIcon, VietnamIcon } from 'assets';
 
 export function AuthLayout() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { i18n } = useTranslation();
+  const onChangeLanguage = async (lang: string) => {
+    await i18n.changeLanguage(lang);
+  };
 
   return (
     <AppShell
@@ -31,17 +41,46 @@ export function AuthLayout() {
         <Header height={60}>
           <Group sx={{ height: '100%' }} px={20} position='apart'>
             <Logo colorScheme={colorScheme} />
-            <ActionIcon
-              variant='default'
-              onClick={() => toggleColorScheme()}
-              size={30}
-            >
-              {colorScheme === 'dark' ? (
-                <IconSun size='1rem' />
-              ) : (
-                <IconMoonStars size='1rem' />
-              )}
-            </ActionIcon>
+            <Stack sx={{ flexDirection: 'row' }}>
+              <Menu shadow='md'>
+                <Menu.Target>
+                  <ActionIcon variant='default' size={30}>
+                    <Text size={'sm'} sx={{ textTransform: 'uppercase' }}>
+                      {i18n.language}
+                    </Text>
+                  </ActionIcon>
+                </Menu.Target>
+
+                <Menu.Dropdown>
+                  <Menu.Item
+                    onClick={() => onChangeLanguage('vi')}
+                    sx={{ alignItems: 'center' }}
+                  >
+                    <Flex gap={'sm'} align={'center'} justify={'center'}>
+                      <VietnamIcon width={20} height={20} />
+                      Việt nam
+                    </Flex>
+                  </Menu.Item>
+                  <Menu.Item onClick={() => onChangeLanguage('en')}>
+                    <Flex gap={'sm'} align={'center'} justify={'center'}>
+                      <EnglishIcon width={20} height={20} />
+                      English
+                    </Flex>
+                  </Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+              <ActionIcon
+                variant='default'
+                onClick={() => toggleColorScheme()}
+                size={30}
+              >
+                {colorScheme === 'dark' ? (
+                  <IconSun size='1rem' />
+                ) : (
+                  <IconMoonStars size='1rem' />
+                )}
+              </ActionIcon>
+            </Stack>
           </Group>
         </Header>
       }

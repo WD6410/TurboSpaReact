@@ -93,5 +93,8 @@ export default defineConfig(({ mode }) => {
     },
     mode: TurboConfig.mode,
     envPrefix: TurboConfig.prefixEnv,
+    optimizeDeps: {
+      exclude: ['@alova/adapter-axios'],
+    },
   };
 });

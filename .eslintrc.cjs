@@ -60,5 +60,6 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
+    'import/no-named-as-default-member': 'off'
   },
 };

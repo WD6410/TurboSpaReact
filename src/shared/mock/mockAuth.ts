@@ -2,14 +2,17 @@ import { defineMock } from '@alova/mock';
 
 const mockUser = new Map();
 
-mockUser.set('truongdq', { pw: 123 });
-mockUser.set('admin', { pw: 123 });
+mockUser.set('truongdq.dev@gmail.com', {
+  password: 123456789,
+  email: 'truongdq.dev@gmail.com',
+});
+mockUser.set('admin@gmail.com', { password: 123456789 });
 
 export const mockSignIn = defineMock({
   '[POST]/sign-in': ({ data }) => {
     if (
-      mockUser.has(data.username) &&
-      String(mockUser.get(data.username)?.pw) === data.pw
+      mockUser.has(data.email) &&
+      String(mockUser.get(data.email)?.password) === data.password
     ) {
       return {
         status: 200,
@@ -20,10 +23,12 @@ export const mockSignIn = defineMock({
     throw new Error('User not found');
   },
   '/me': ({ query }) => {
-    if (mockUser.has(query.username)) {
+    if (mockUser.has(query.email)) {
       return {
         status: 200,
-        data: mockUser.get(query.username),
+        data: {
+          user: mockUser.get(query.email),
+        },
       };
     }
     return {
