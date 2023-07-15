@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import {
   ActionIcon,
   AppShell,
@@ -15,14 +15,19 @@ import { Logo, MainLink, User } from 'shared/components';
 import { IconMoonStars, IconSun } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import { EnglishIcon, VietnamIcon } from 'assets';
+import { useAuthStore } from 'shared/store';
 
 export function AuthLayout() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { i18n } = useTranslation();
+  const isAuthentication = useAuthStore((state) => state.isAuthentication);
   const onChangeLanguage = async (lang: string) => {
     await i18n.changeLanguage(lang);
   };
 
+  if (!isAuthentication) {
+    return <Navigate to={'/sign-in'} />;
+  }
   return (
     <AppShell
       padding='md'

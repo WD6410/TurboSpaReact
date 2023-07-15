@@ -1,30 +1,38 @@
 import styles from './SignInPageStyles.module.scss';
 import { classNamesFunc } from 'classnames-generics';
 import { SignInForm } from '../components';
-import { handleLoginSuccess } from '../utils';
 import { useNavigate } from 'react-router-dom';
 import { ErrorPageStrategy } from 'shared/ErrorBoundary';
 import { useRequest } from 'alova';
-import { siginInApi } from 'features/sign-in/services/signInService.ts';
+import {
+  siginInApi,
+  whoamiApi,
+} from 'features/sign-in/services/signInService.ts';
+import { useAuthStore } from 'shared/store';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 export function SignInPage() {
   const navigate = useNavigate();
-  const { loading, send } = useRequest(siginInApi, {
+  const setToken = useAuthStore((state) => state.setToken);
+  const setUser = useAuthStore((state) => state.setUser);
+  const { loading, send: sendSignIn } = useRequest(siginInApi, {
     immediate: false,
   });
-  const handleSignIn = (data: any) => {
-    send(data)
-      .then((result) => {
-        console.log('result', result);
-        handleLoginSuccess(result);
-        setTimeout(() => {
-          navigate('/');
-        }, 100);
-      })
-      .catch((_error) => {
-        console.log(_error);
-      });
+
+  const { send: sendWhoami, loading: loadingWhoami } = useRequest(whoamiApi, {
+    immediate: false,
+  });
+
+  const handleSignIn = async (data: any) => {
+    try {
+      const resultSignIn = await sendSignIn(data);
+      const whoami = await sendWhoami();
+      setToken(resultSignIn.token);
+      setUser(whoami);
+      navigate('/');
+    } catch (_error) {
+      console.log(_error);
+    }
   };
 
   return (
@@ -33,7 +41,10 @@ export function SignInPage() {
         <h1 className={classNames(styles['signIn-Page--title'])}>
           Welcome Turbo Application
         </h1>
-        <SignInForm isLoading={loading} onSubmit={handleSignIn} />
+        <SignInForm
+          isLoading={loading || loadingWhoami}
+          onSubmit={handleSignIn}
+        />
       </div>
     </div>
   );

@@ -8,23 +8,22 @@ export const router = createBrowserRouter([
     element: (
       <>
         <ScrollRestoration getKey={(location) => location.pathname} />
-        <EmptyLayout />
+        <AuthLayout />
       </>
     ),
     errorElement: <ErrorPageStrategy />,
     children: [
       {
         path: '/',
-        element: <AuthLayout />,
-        children: [
-          {
-            path: '/',
-            index: true,
-            lazy: () => import('../features/home-page/containers/HomePage'),
-            loader: homeLoader,
-          },
-        ],
+        index: true,
+        lazy: () => import('../features/home-page/containers/HomePage'),
+        loader: homeLoader,
       },
+    ],
+  },
+  {
+    element: <EmptyLayout />,
+    children: [
       {
         path: '/sign-in',
         index: true,

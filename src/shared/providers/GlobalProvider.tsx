@@ -1,22 +1,18 @@
-import { PropsWithChildren, useRef } from 'react';
+import { PropsWithChildren } from 'react';
 import {
-  GlobalStore,
+  AuthStoreProvider,
   GlobalStoreProvider,
+  initializeAuthStore,
   initializeGlobalStore,
 } from 'shared/store';
 import 'shared/translations';
 
-export default function GlobalProvider({
-  children,
-  ...props
-}: PropsWithChildren) {
-  const storeRef = useRef<GlobalStore>();
-  if (!storeRef.current) {
-    storeRef.current = initializeGlobalStore(props);
-  }
+export default function GlobalProvider({ children }: PropsWithChildren) {
   return (
-    <GlobalStoreProvider value={storeRef.current}>
-      {children}
+    <GlobalStoreProvider value={initializeGlobalStore({})}>
+      <AuthStoreProvider value={initializeAuthStore({})}>
+        {children}
+      </AuthStoreProvider>
     </GlobalStoreProvider>
   );
 }

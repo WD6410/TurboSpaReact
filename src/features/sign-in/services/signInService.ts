@@ -1,18 +1,21 @@
 import { alovaInstance } from 'shared/config/apiConfig.ts';
 
-export const whoamiApi = () => {
-  return alovaInstance.Get('/me');
+export type IUser = {
+  email: string;
+  avatarUrl: string;
 };
 
-export type AuthSignInRequest = {
-  email: string;
-  password: string;
-};
+export type IUserWithPw = IUser & { password: string };
+
+export type AuthSignInRequest = Pick<IUserWithPw, 'email' | 'password'>;
 
 export type AuthSignInResponse = {
-  status: number;
-  message: string;
   token: string;
+  user: IUser;
+};
+
+export const whoamiApi = () => {
+  return alovaInstance.Get<IUser>('/me');
 };
 
 export const siginInApi = (formLogin: AuthSignInRequest) => {

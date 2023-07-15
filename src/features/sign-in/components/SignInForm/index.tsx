@@ -2,21 +2,21 @@ import { classNamesFunc } from 'classnames-generics';
 
 import styles from './SignInForm.module.scss';
 import { useForm } from '@mantine/form';
-import { Box, Button, Checkbox, Group, TextInput } from '@mantine/core';
+import { Box, Button, Group, TextInput } from '@mantine/core';
+import { AuthSignInRequest } from 'features/sign-in/services/signInService';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 
 type SignInFormProps = {
-  onSubmit: (values: any) => void;
+  onSubmit: (values: AuthSignInRequest) => void;
   isLoading: boolean;
 };
 
 export default function SignInForm({ onSubmit, isLoading }: SignInFormProps) {
   const form = useForm({
     initialValues: {
-      email: '',
-      password: '',
-      termsOfService: false,
+      email: 'truongdq.dev@gmail.com',
+      password: '123456789',
     },
 
     validate: {
@@ -41,12 +41,6 @@ export default function SignInForm({ onSubmit, isLoading }: SignInFormProps) {
             label='Password'
             placeholder='*********'
             {...form.getInputProps('password')}
-          />
-
-          <Checkbox
-            mt='md'
-            label='I agree to sell my privacy'
-            {...form.getInputProps('termsOfService', { type: 'checkbox' })}
           />
 
           <Group position='right' mt='md'>
