@@ -19,6 +19,30 @@ export const router = createBrowserRouter([
         lazy: () => import('../features/home-page/containers/HomePage'),
         loader: homeLoader,
       },
+      {
+        path: '/pull-requests',
+        index: true,
+        lazy: () => import('../features/home-page/containers/HomePage'),
+        loader: homeLoader,
+      },
+      {
+        path: '/open-issues',
+        index: true,
+        lazy: () => import('../features/home-page/containers/HomePage'),
+        loader: homeLoader,
+      },
+      {
+        path: '/discussions',
+        index: true,
+        lazy: () => import('../features/home-page/containers/HomePage'),
+        loader: homeLoader,
+      },
+      {
+        path: '/databases',
+        index: true,
+        lazy: () => import('../features/home-page/containers/HomePage'),
+        loader: homeLoader,
+      },
     ],
   },
   {

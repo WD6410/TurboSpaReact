@@ -16,6 +16,7 @@ import { IconMoonStars, IconSun } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import { EnglishIcon, VietnamIcon } from 'assets';
 import { useAuthStore } from 'shared/store';
+import { sideBarConfig } from 'shared/config/sidebarConfig';
 
 export function AuthLayout() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -35,7 +36,7 @@ export function AuthLayout() {
       navbar={
         <Navbar width={{ base: 300 }} p='xs'>
           <Navbar.Section grow mt='xs'>
-            <MainLink />
+            <MainLink links={sideBarConfig} />
           </Navbar.Section>
           <Navbar.Section>
             <User />
