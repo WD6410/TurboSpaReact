@@ -20,9 +20,6 @@ export const useAuthStore = <T>(selector: (state: IAuthStore) => T) => {
 
 export const initializeAuthStore = (preloadState: Partial<IAuthStore>) => {
   return createStore<IAuthStore>((set) => {
-    const storageToken = sessionStorageAdapter.get(AUTH_KEY);
-    console.log('storageToken', storageToken);
-
     return {
       ...preloadState,
       isAuthentication: !!sessionStorageAdapter.get(AUTH_KEY),
