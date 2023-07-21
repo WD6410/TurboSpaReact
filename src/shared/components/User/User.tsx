@@ -11,6 +11,7 @@ import {
 } from '@mantine/core';
 
 import styles from './User.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 
@@ -21,9 +22,13 @@ interface IUserProps {
 
 export default function User(_props: IUserProps) {
   const theme = useMantineTheme();
+  const navigate = useNavigate();
 
   return (
-    <div className={classNames(styles['user'])}>
+    <Box
+      className={classNames(styles['user'])}
+      onClick={() => navigate('/profile')}
+    >
       <Box
         sx={{
           paddingTop: theme.spacing.sm,
@@ -73,6 +78,6 @@ export default function User(_props: IUserProps) {
           </Group>
         </UnstyledButton>
       </Box>
-    </div>
+    </Box>
   );
 }

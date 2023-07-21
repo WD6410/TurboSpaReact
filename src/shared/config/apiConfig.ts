@@ -5,6 +5,8 @@ import { createAlovaMockAdapter } from '@alova/mock';
 import { mockSignIn } from 'shared/mock/mockAuth';
 import { sessionStorageAdapter } from 'shared/config/storageConfig.ts';
 import { axiosMockResponse, axiosRequestAdapter } from '@alova/adapter-axios';
+import { AUTH_KEY } from './constants';
+import { useAuthStore } from 'shared/store';
 
 export const alovaInstance = createAlova({
   // ReactHook is used to create ref status, including request status loading, response data data, request error object error, etc.
@@ -25,9 +27,10 @@ export const alovaInstance = createAlova({
 
   beforeRequest(method) {
     if (!method.meta?.ignoreToken) {
-      method.config.headers.Authorization = `Bearer ${JSON.parse(
-        sessionStorageAdapter.get('token') as string,
-      )}`;
+      const token =
+        useAuthStore.getState().token ?? sessionStorageAdapter.get(AUTH_KEY);
+
+      method.config.headers.Authorization = `Bearer ${token}`;
     }
   },
   storageAdapter: sessionStorageAdapter,

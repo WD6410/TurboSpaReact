@@ -6,8 +6,7 @@ import Div100vh from 'react-div-100vh';
 import { HelmetProvider } from 'react-helmet-async';
 
 export const AppProviders = ({ children }: PropsWithChildren) => {
-  const colorScheme = useGlobalStore((state) => state.colorScheme);
-  const toggleColorScheme = useGlobalStore((state) => state.toggleColorScheme);
+  const { colorScheme, toggleColorScheme } = useGlobalStore();
 
   return (
     <HelmetProvider>

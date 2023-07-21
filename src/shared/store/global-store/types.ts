@@ -1,7 +1,7 @@
 import type { ColorScheme } from '@mantine/core';
+import { IStoreImplement } from '../types';
 
-export interface IGlobalStore {
-  state: 'idle' | 'loading' | 'finished';
+export interface IGlobalStore extends IStoreImplement {
   startup: () => void;
   finish: () => void;
   colorScheme: ColorScheme;

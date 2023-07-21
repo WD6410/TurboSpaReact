@@ -1,9 +1,9 @@
 import { defineMock } from '@alova/mock';
 import CryptoJS from 'crypto-js';
-import Base64 from 'crypto-js/enc-base64';
 import _ from 'lodash-es';
 
 const mockUser = new Map();
+export const private_key = 'private_key';
 
 mockUser.set('truongdq.dev@gmail.com', {
   password: 123456789,
@@ -20,15 +20,21 @@ export const mockSignIn = defineMock({
     ) {
       return {
         user: _.omit(mockUser.get(data.email), 'password'),
-        token: Base64.stringify(CryptoJS.HmacSHA1(data.email, 'private_key')),
+        token: CryptoJS.AES.encrypt(data.email, private_key).toString(),
       };
     }
     throw new Error('User not found');
   },
-  '/me': ({ query }) => {
-    if (mockUser.has(query.email)) {
+  '/me': ({ headers }) => {
+    const [, token] = headers.Authorization.split(' ');
+
+    const email = CryptoJS.AES.decrypt(token, private_key).toString(
+      CryptoJS.enc.Utf8,
+    );
+
+    if (mockUser.has(email)) {
       return {
-        user: _.omit(mockUser.get(query.email), 'password'),
+        user: _.omit(mockUser.get(email), 'password'),
       };
     }
     return {

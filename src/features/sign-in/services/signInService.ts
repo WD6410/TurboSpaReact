@@ -15,10 +15,10 @@ export type AuthSignInResponse = {
 };
 
 export const whoamiApi = () => {
-  return alovaInstance.Get<IUser>('/me');
+  return alovaInstance.Get<{ user: IUser }>('/me');
 };
 
-export const siginInApi = (formLogin: AuthSignInRequest) => {
+export const signInApi = (formLogin: AuthSignInRequest) => {
   const methodInstance = alovaInstance.Post<AuthSignInResponse>(
     '/sign-in',
     formLogin,

@@ -48,7 +48,7 @@ function MainLinkItem({ icon, color, label, path }: IMainLinkProps) {
                 },
                 backgroundColor: isActive
                   ? theme.colorScheme === 'dark'
-                    ? theme.colors.indigo[9]
+                    ? theme.colors.gray[9]
                     : theme.colors.indigo[0]
                   : 'none',
               })}

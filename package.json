@@ -49,6 +49,7 @@
     "eslint-plugin-react": "^7.32.2",
     "husky": "^8.0.3",
     "i18next": "^22.4.10",
+    "immer": "^10.0.2",
     "lint-staged": "^13.2.2",
     "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
@@ -63,6 +64,7 @@
     "react-i18next": "12.2.0",
     "react-router-dom": "^6.14.1",
     "sort-by": "^1.2.0",
+    "use-immer": "^0.9.0",
     "vite-plugin-svgr": "^3.2.0",
     "zustand": "^4.3.9"
   },
@@ -109,7 +111,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint-staged"
+      "pre-commit": "yarn run lint-staged && yarn prettier"
     }
   },
   "lint-staged": {

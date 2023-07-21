@@ -1,4 +1,4 @@
-import { Result } from 'shared/ErrorBoundary/Result.tsx';
+import { Result } from 'shared/error-boundary/Result';
 import { IconServerOff } from '@tabler/icons-react';
 import { Button } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';

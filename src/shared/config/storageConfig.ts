@@ -3,7 +3,8 @@ export const sessionStorageAdapter = {
     sessionStorage.setItem(key, JSON.stringify(value));
   },
   get(key: string) {
-    return sessionStorage.getItem(key);
+    const result = sessionStorage.getItem(key);
+    return result ? JSON.parse(result) : '';
   },
   remove(key: string) {
     sessionStorage.removeItem(key);

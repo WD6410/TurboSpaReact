@@ -1,6 +1,7 @@
 import { IUser } from 'features/sign-in/services/signInService';
+import { IStoreImplement } from '../types';
 
-export interface IAuthStore {
+export interface IAuthStore extends IStoreImplement {
   user?: IUser | null;
   isAuthentication: boolean;
   token?: string | null;

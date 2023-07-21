@@ -1,6 +1,7 @@
 import { homeLoader } from 'features/home-page/loader';
+import { profileLoader } from 'features/profile-page/loader';
 import { createBrowserRouter, ScrollRestoration } from 'react-router-dom';
-import { ErrorPageStrategy } from 'shared/ErrorBoundary';
+import { ErrorPageStrategy } from 'shared/error-boundary';
 import { AuthLayout, EmptyLayout } from 'shared/layouts';
 
 export const router = createBrowserRouter([
@@ -42,6 +43,12 @@ export const router = createBrowserRouter([
         index: true,
         lazy: () => import('../features/home-page/containers/HomePage'),
         loader: homeLoader,
+      },
+      {
+        path: '/profile',
+        index: true,
+        lazy: () => import('../features/profile-page/containers/ProfilePage'),
+        loader: profileLoader,
       },
     ],
   },

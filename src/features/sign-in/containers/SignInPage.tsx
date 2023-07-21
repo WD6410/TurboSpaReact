@@ -2,36 +2,36 @@ import styles from './SignInPageStyles.module.scss';
 import { classNamesFunc } from 'classnames-generics';
 import { SignInForm } from '../components';
 import { useNavigate } from 'react-router-dom';
-import { ErrorPageStrategy } from 'shared/ErrorBoundary';
+import { ErrorPageStrategy } from 'shared/error-boundary';
 import { useRequest } from 'alova';
-import {
-  siginInApi,
-  whoamiApi,
-} from 'features/sign-in/services/signInService.ts';
+import { signInApi } from 'features/sign-in/services/signInService.ts';
 import { useAuthStore } from 'shared/store';
+import { notifications } from '@mantine/notifications';
+import _ from 'lodash-es';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 export function SignInPage() {
   const navigate = useNavigate();
-  const setToken = useAuthStore((state) => state.setToken);
-  const setUser = useAuthStore((state) => state.setUser);
-  const { loading, send: sendSignIn } = useRequest(siginInApi, {
-    immediate: false,
-  });
-
-  const { send: sendWhoami, loading: loadingWhoami } = useRequest(whoamiApi, {
+  const { setToken, setUser } = useAuthStore();
+  const { loading, send: sendSignIn } = useRequest(signInApi, {
     immediate: false,
   });
 
   const handleSignIn = async (data: any) => {
     try {
       const resultSignIn = await sendSignIn(data);
-      const whoami = await sendWhoami();
       setToken(resultSignIn.token);
-      setUser(whoami);
+      setUser(resultSignIn.user);
       navigate('/');
-    } catch (_error) {
-      console.log(_error);
+    } catch (error) {
+      notifications.show({
+        message: _.get(
+          error,
+          'message',
+          '[sign-in]: Đã có lỗi sảy ra, vui lòng thử lại sau!',
+        ),
+        color: 'red',
+      });
     }
   };
 
@@ -41,10 +41,7 @@ export function SignInPage() {
         <h1 className={classNames(styles['signIn-Page--title'])}>
           Welcome Turbo Application
         </h1>
-        <SignInForm
-          isLoading={loading || loadingWhoami}
-          onSubmit={handleSignIn}
-        />
+        <SignInForm isLoading={loading} onSubmit={handleSignIn} />
       </div>
     </div>
   );

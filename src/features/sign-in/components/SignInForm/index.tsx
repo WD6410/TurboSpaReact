@@ -44,7 +44,7 @@ export default function SignInForm({ onSubmit, isLoading }: SignInFormProps) {
           />
 
           <Group position='right' mt='md'>
-            <Button disabled={isLoading} type='submit'>
+            <Button loading={isLoading} type='submit'>
               Submit
             </Button>
           </Group>
