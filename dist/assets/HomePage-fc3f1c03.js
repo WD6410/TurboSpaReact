@@ -1,0 +1,1 @@
+import{u as t,j as o}from"./index-239d25fb.js";import{S as n}from"./Seo-d2e1e73d.js";function m(){const{t:e}=t(["common"]);return o.jsxs("div",{children:[o.jsx(n,{title:"Trang chủ",description:"A template code react common and reuse <3",type:"preview"}),e("common:welcome")]})}const c=m;export{c as Component,m as HomePage};

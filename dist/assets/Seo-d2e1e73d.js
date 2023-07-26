@@ -1,0 +1,1 @@
+import{j as t,W as r}from"./index-239d25fb.js";function p({title:e,description:o,type:n}){return t.jsxs(r,{children:[t.jsxs("title",{children:[e," | Turbo"]}),t.jsx("meta",{name:"description",content:o}),t.jsx("meta",{property:"og:type",content:n}),t.jsx("meta",{property:"og:title",content:e}),t.jsx("meta",{property:"og:description",content:o})]})}export{p as S};

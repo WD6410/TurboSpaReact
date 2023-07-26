@@ -13,7 +13,8 @@
     "build-storybook": "storybook build",
     "prepare": "husky install",
     "config-env": "node scripts/configEnv.js",
-    "generate-assets": "node scripts/generateAssets.js"
+    "generate-assets": "node scripts/generateAssets.js",
+    "generate-type-server": "yarn dtsgen -o src/swaggerSchema.d.ts --url http://localhost:8000/swagger.json"
   },
   "dependencies": {
     "@alova/adapter-axios": "^1.1.1",
@@ -42,6 +43,7 @@
     "classnames-generics": "^1.0.9",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.9",
+    "dtsgenerator": "^3.18.0",
     "embla-carousel-react": "^8.0.0-rc11",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
