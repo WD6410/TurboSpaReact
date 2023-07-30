@@ -4,6 +4,7 @@ import styles from './SignInForm.module.scss';
 import { useForm } from '@mantine/form';
 import { Box, Button, Group, TextInput } from '@mantine/core';
 import { AuthSignInRequest } from 'features/sign-in/services/signInService';
+import { regexEmail } from 'shared/config/constants';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 
@@ -20,7 +21,7 @@ export default function SignInForm({ onSubmit, isLoading }: SignInFormProps) {
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) => (regexEmail.test(value) ? null : 'Invalid email'),
       password: (value) =>
         value.length >= 8 ? null : 'Min length is 8 characters',
     },

@@ -2,6 +2,7 @@ import { Result } from 'shared/error-boundary/Result';
 import { IconAlertTriangle } from '@tabler/icons-react';
 import { Button } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
+import { pathRouter } from 'shared/config/pathRouter';
 
 export const NotFoundResult = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export const NotFoundResult = () => {
         'Probably you got here by accident. If you think there is something wrong on our side, please contact us!'
       }
     >
-      <Button onClick={() => navigate('/')} color='orange'>
+      <Button onClick={() => navigate(pathRouter.Home)} color='orange'>
         Go home
       </Button>
     </Result>

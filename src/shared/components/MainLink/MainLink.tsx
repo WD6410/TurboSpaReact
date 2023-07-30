@@ -1,8 +1,17 @@
 import { classNamesFunc } from 'classnames-generics';
 import styles from './MainLink.module.scss';
 import type { ReactNode } from 'react';
+import { useMemo } from 'react';
 import { Group, Loader, Text, ThemeIcon, UnstyledButton } from '@mantine/core';
 import { NavLink } from 'react-router-dom';
+import {
+  IconListDetails,
+  IconMessages,
+  IconTemplate,
+  IconUsers,
+} from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
+import { pathRouter } from 'shared/config/pathRouter.ts';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 
@@ -68,13 +77,43 @@ function MainLinkItem({ icon, color, label, path }: IMainLinkProps) {
   );
 }
 
-export type MainLinkProps = {
-  links: IMainLinkProps[];
-};
+export default function MainLink() {
+  const { t } = useTranslation(['sidebar']);
+  const links = useMemo(
+    () => [
+      {
+        icon: <IconListDetails size='1rem' />,
+        color: 'blue',
+        label: t('sidebar:tasks'),
+        path: pathRouter.Tasks,
+      },
+      {
+        icon: <IconUsers size='1rem' />,
+        color: 'teal',
+        label: t('sidebar:employees'),
+        path: pathRouter.Employees,
+      },
+      {
+        icon: <IconMessages size='1rem' />,
+        color: 'violet',
+        label: t('sidebar:discussions'),
+        path: pathRouter.Discussions,
+      },
+      {
+        icon: <IconTemplate size='1rem' />,
+        color: 'grape',
+        label: t('sidebar:templates'),
+        path: pathRouter.Templates,
+      },
+    ],
+    [t],
+  );
 
-export default function MainLink({ links }: MainLinkProps) {
-  const content = links.map((link) => (
-    <MainLinkItem {...link} key={link.label} />
-  ));
-  return <div>{content}</div>;
+  return (
+    <div>
+      {links.map((link) => (
+        <MainLinkItem {...link} key={link.label} />
+      ))}
+    </div>
+  );
 }

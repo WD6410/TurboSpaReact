@@ -3,6 +3,8 @@ import { profileLoader } from 'features/profile-page/loader';
 import { createBrowserRouter, ScrollRestoration } from 'react-router-dom';
 import { ErrorPageStrategy } from 'shared/error-boundary';
 import { AuthLayout, EmptyLayout } from 'shared/layouts';
+import { pathRouter } from 'shared/config/pathRouter.ts';
+import { tasksLoader } from 'features/tasks-page/loader';
 
 export const router = createBrowserRouter([
   {
@@ -15,37 +17,37 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPageStrategy />,
     children: [
       {
-        path: '/',
+        path: pathRouter.Home,
         index: true,
         lazy: () => import('../features/home-page/containers/HomePage'),
         loader: homeLoader,
       },
       {
-        path: '/pull-requests',
+        path: pathRouter.Tasks,
+        index: true,
+        lazy: () => import('../features/tasks-page/containers/TasksPage'),
+        loader: tasksLoader,
+      },
+      {
+        path: pathRouter.Employees,
         index: true,
         lazy: () => import('../features/home-page/containers/HomePage'),
         loader: homeLoader,
       },
       {
-        path: '/open-issues',
+        path: pathRouter.Discussions,
         index: true,
         lazy: () => import('../features/home-page/containers/HomePage'),
         loader: homeLoader,
       },
       {
-        path: '/discussions',
+        path: pathRouter.Templates,
         index: true,
         lazy: () => import('../features/home-page/containers/HomePage'),
         loader: homeLoader,
       },
       {
-        path: '/databases',
-        index: true,
-        lazy: () => import('../features/home-page/containers/HomePage'),
-        loader: homeLoader,
-      },
-      {
-        path: '/profile',
+        path: pathRouter.Profile,
         index: true,
         lazy: () => import('../features/profile-page/containers/ProfilePage'),
         loader: profileLoader,
@@ -56,7 +58,7 @@ export const router = createBrowserRouter([
     element: <EmptyLayout />,
     children: [
       {
-        path: '/sign-in',
+        path: pathRouter.SignIn,
         index: true,
         lazy: () => import('../features/sign-in/containers/SignInPage'),
       },

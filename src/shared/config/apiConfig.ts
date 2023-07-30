@@ -2,11 +2,11 @@ import { createAlova } from 'alova';
 import ReactHook from 'alova/react';
 import { envConfig } from './envConfig';
 import { createAlovaMockAdapter } from '@alova/mock';
-import { mockSignIn } from 'shared/mock/mockAuth';
 import { sessionStorageAdapter } from 'shared/config/storageConfig.ts';
 import { axiosMockResponse, axiosRequestAdapter } from '@alova/adapter-axios';
 import { AUTH_KEY } from './constants';
 import { useAuthStore } from 'shared/store';
+import { mocks } from 'shared/mock';
 
 export const alovaInstance = createAlova({
   // ReactHook is used to create ref status, including request status loading, response data data, request error object error, etc.
@@ -15,7 +15,7 @@ export const alovaInstance = createAlova({
   // request adapter, it is recommended to use the fetch request adapter
   requestAdapter:
     envConfig.turboNodeEnv === 'development'
-      ? createAlovaMockAdapter([mockSignIn], {
+      ? createAlovaMockAdapter(mocks, {
           httpAdapter: axiosRequestAdapter(),
           delay: 1500,
           mockRequestLogger: true,

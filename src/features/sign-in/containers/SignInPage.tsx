@@ -8,6 +8,7 @@ import { signInApi } from 'features/sign-in/services/signInService.ts';
 import { useAuthStore } from 'shared/store';
 import { notifications } from '@mantine/notifications';
 import _ from 'lodash-es';
+import { pathRouter } from 'shared/config/pathRouter';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 export function SignInPage() {
@@ -22,7 +23,7 @@ export function SignInPage() {
       const resultSignIn = await sendSignIn(data);
       setToken(resultSignIn.token);
       setUser(resultSignIn.user);
-      navigate('/');
+      navigate(pathRouter.Home);
     } catch (error) {
       notifications.show({
         message: _.get(

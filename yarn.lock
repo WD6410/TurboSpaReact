@@ -1520,6 +1520,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.46.0.tgz#3f7802972e8b6fe3f88ed1aabc74ec596c456db6"
   integrity sha512-a8TLtmPi8xzPkCbp/OGFUo5yhRkHM2Ko9kOWP4znJr0WAhWyThaw3PnwX4vOTWOAMsV2uRt32PPDcEz63esSaA==
 
+"@faker-js/faker@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-8.0.2.tgz#bab698c5d3da9c52744e966e0e3eedb6c8b05c37"
+  integrity sha512-Uo3pGspElQW91PCvKSIAXoEgAUlRnH29sX2/p89kg7sP1m2PzCufHINd0FhTXQf6DYGiUlVncdSPa2F9wxed2A==
+
 "@fal-works/esbuild-plugin-global-externals@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@fal-works/esbuild-plugin-global-externals/-/esbuild-plugin-global-externals-2.1.2.tgz#c05ed35ad82df8e6ac616c68b92c2282bd083ba4"
@@ -7463,6 +7468,18 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+lottie-react@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/lottie-react/-/lottie-react-2.4.0.tgz#f7249eee2b1deee70457a2d142194fdf2456e4bd"
+  integrity sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==
+  dependencies:
+    lottie-web "^5.10.2"
+
+lottie-web@^5.10.2:
+  version "5.12.2"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.12.2.tgz#579ca9fe6d3fd9e352571edd3c0be162492f68e5"
+  integrity sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==
+
 loupe@^2.3.1, loupe@^2.3.6:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/loupe/-/loupe-2.3.6.tgz#76e4af498103c532d1ecc9be102036a21f787b53"
@@ -7795,6 +7812,11 @@ mlly@^1.2.0:
     pathe "^1.1.1"
     pkg-types "^1.0.3"
     ufo "^1.1.2"
+
+moment@^2.29.4:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 mri@^1.2.0:
   version "1.2.0"
@@ -8593,6 +8615,13 @@ react-colorful@^5.1.2:
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.6.1.tgz#7dc2aed2d7c72fac89694e834d179e32f3da563b"
   integrity sha512-1exovf0uGTGyq5mXQT0zgQ80uvj2PCwvF8zY1RN9/vbJVSjSo3fsB/4L3ObbF7u70NduSiK4xu4Y6q1MHoUGEw==
+
+react-device-detect@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-2.2.3.tgz#97a7ae767cdd004e7c3578260f48cf70c036e7ca"
+  integrity sha512-buYY3qrCnQVlIFHrC5UcUoAj7iANs/+srdkwsnNjI7anr3Tt7UY6MqNxtMLlr0tMBied0O49UZVK8XKs3ZIiPw==
+  dependencies:
+    ua-parser-js "^1.0.33"
 
 react-div-100vh@^0.7.0:
   version "0.7.0"
@@ -10094,6 +10123,11 @@ typescript@^4.9.5:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
+
+ua-parser-js@^1.0.33:
+  version "1.0.35"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.35.tgz#c4ef44343bc3db0a3cbefdf21822f1b1fc1ab011"
+  integrity sha512-fKnGuqmTBnIE+/KXSzCn4db8RTigUzw1AN0DmdU6hJovUTbYJKyqj+8Mt1c4VfRDnOVJnENmfYkIPZ946UrSAA==
 
 ufo@^1.1.2:
   version "1.1.2"

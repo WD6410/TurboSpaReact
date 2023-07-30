@@ -24,13 +24,6 @@ export function truncateString(str: string, maxLength: number) {
   }
 }
 
-export function convertToSlug(str: string) {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$+/g, '');
-}
-
 export function countOccurrences(str: string, word: string) {
   const regex = new RegExp(word, 'gi');
   const matches = str.match(regex);

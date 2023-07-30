@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently --kill-others \"vite\" \"cd server && yarn dev\"",
+    "dev": "vite",
     "build": "tsc && vite build --mode production",
     "lint": "eslint src --ext ts,tsx",
     "preview": "vite preview",
@@ -14,13 +14,14 @@
     "prepare": "husky install",
     "config-env": "node scripts/configEnv.js",
     "generate-assets": "node scripts/generateAssets.js",
-    "generate-type-server": "yarn dtsgen -o src/@types/swaggerSchema.d.ts --url http://localhost:8000/swagger.json"
+    "generate-type-server": "yarn dtsgen -o src/@types/swaggerSchema.d.ts --url https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v2.0/schema.json"
   },
   "dependencies": {
     "@alova/adapter-axios": "^1.1.1",
     "@alova/mock": "^1.5.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@faker-js/faker": "^8.0.2",
     "@mantine/carousel": "^6.0.16",
     "@mantine/core": "^6.0.16",
     "@mantine/dates": "^6.0.16",
@@ -55,10 +56,13 @@
     "lint-staged": "^13.2.2",
     "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
+    "lottie-react": "^2.4.0",
     "match-sorter": "^6.3.1",
+    "moment": "^2.29.4",
     "prettier": "^3.0.0",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
+    "react-device-detect": "^2.2.3",
     "react-div-100vh": "^0.7.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.10",

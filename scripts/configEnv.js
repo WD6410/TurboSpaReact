@@ -1,11 +1,11 @@
 import * as fs from 'fs';
 import TurboConfig from '../turbo.json' assert { type: 'json' };
 import {
+  __rootDir,
+  addPrefixToObjectKeys,
   ENV_CONFIG,
   ENV_TEMPLATE,
   FileManager,
-  __rootDir,
-  addPrefixToObjectKeys,
   isDirectory,
   parseEnvFile,
   parseObjToEnv,
@@ -94,7 +94,7 @@ const generateEnv = () => {
 };
 
 const generateTsEnv = () => {
-  const envDTs = `${__rootDir}/src/env.d.ts`;
+  const envDTs = `${__rootDir}/src/@types/env.d.ts`;
   const fileContent = fs.readFileSync(envDTs, 'utf-8');
 
   const envObj = formatEnvWithPrefix();

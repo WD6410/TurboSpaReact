@@ -2,6 +2,7 @@ import { Result } from 'shared/error-boundary/Result';
 import { IconServerOff } from '@tabler/icons-react';
 import { Button } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
+import { pathRouter } from 'shared/config/pathRouter';
 
 export const InternalServerErrorResult = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export const InternalServerErrorResult = () => {
         'It sounds like something unexpected happened right now. Please, inform our support team about this issue ASAP!'
       }
     >
-      <Button onClick={() => navigate('/')} color='red'>
+      <Button onClick={() => navigate(pathRouter.Home)} color='red'>
         Go home
       </Button>
     </Result>

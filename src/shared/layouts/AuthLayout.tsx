@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import {
   ActionIcon,
   AppShell,
@@ -11,16 +11,17 @@ import {
   Text,
   useMantineColorScheme,
 } from '@mantine/core';
-import { Logo, MainLink, User } from 'shared/components';
+import { AppAffix, Logo, MainLink, User } from 'shared/components';
 import { IconMoonStars, IconSun } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 import { EnglishIcon, VietnamIcon } from 'assets';
 import { useAuthStore } from 'shared/store';
-import { sideBarConfig } from 'shared/config/sidebarConfig';
+import { pathRouter } from 'shared/config/pathRouter.ts';
 
 export function AuthLayout() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
   const { isAuthentication } = useAuthStore();
 
   const onChangeLanguage = async (lang: string) => {
@@ -28,16 +29,16 @@ export function AuthLayout() {
   };
 
   if (!isAuthentication) {
-    return <Navigate to={'/sign-in'} />;
+    return <Navigate to={pathRouter.SignIn} />;
   }
   return (
     <AppShell
       padding='md'
-      fixed={false}
+      fixed={true}
       navbar={
         <Navbar width={{ base: 300 }} p='xs'>
           <Navbar.Section grow mt='xs'>
-            <MainLink links={sideBarConfig} />
+            <MainLink />
           </Navbar.Section>
           <Navbar.Section>
             <User />
@@ -47,7 +48,7 @@ export function AuthLayout() {
       header={
         <Header height={60}>
           <Group sx={{ height: '100%' }} px={20} position='apart'>
-            <Logo colorScheme={colorScheme} />
+            <Logo onClick={() => navigate('/')} colorScheme={colorScheme} />
             <Stack sx={{ flexDirection: 'row' }}>
               <Menu shadow='md'>
                 <Menu.Target>
@@ -101,6 +102,7 @@ export function AuthLayout() {
       })}
     >
       <Outlet />
+      <AppAffix />
     </AppShell>
   );
 }

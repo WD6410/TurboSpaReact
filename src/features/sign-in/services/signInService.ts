@@ -1,4 +1,5 @@
 import { alovaInstance } from 'shared/config/apiConfig.ts';
+import { endpointApi } from 'shared/config/constants';
 
 export type IUser = {
   email: string;
@@ -15,12 +16,12 @@ export type AuthSignInResponse = {
 };
 
 export const whoamiApi = () => {
-  return alovaInstance.Get<{ user: IUser }>('/me');
+  return alovaInstance.Get<{ user: IUser }>(endpointApi.whoami);
 };
 
 export const signInApi = (formLogin: AuthSignInRequest) => {
   const methodInstance = alovaInstance.Post<AuthSignInResponse>(
-    '/sign-in',
+    endpointApi.signIn,
     formLogin,
   );
   methodInstance.meta = {
