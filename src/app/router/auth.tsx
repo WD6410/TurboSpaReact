@@ -1,3 +1,4 @@
+import { networkRoute } from 'features/network/route';
 import type { RouteObject } from 'react-router-dom';
 import { templatesRoute } from 'features/templates/route';
 import { discussionsRoute } from 'features/discussions/route';
@@ -17,4 +18,5 @@ export const auth: RouteObject[] = [
   ...employeesRoute,
   ...discussionsRoute,
   ...templatesRoute,
+  ...networkRoute,
 ];

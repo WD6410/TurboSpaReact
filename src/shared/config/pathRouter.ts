@@ -8,4 +8,5 @@ export const pathRouter = {
   SignInPage: '/sign-in',
   EmployeeManagerPage: '/employee-manager',
   ShopManagerPage: '/shop-manager',
+  NetworkPage: '/network',
 };

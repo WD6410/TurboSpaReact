@@ -15,7 +15,9 @@
     "prepare": "husky install",
     "config-env": "node scripts/configEnv.js",
     "generate-assets": "node scripts/generateAssets.js",
-    "generate-type-server": "yarn dtsgen -o src/@types/swaggerSchema.d.ts --url https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v2.0/schema.json"
+    "generate-type-server": "yarn dtsgen -o src/@types/swaggerSchema.d.ts --url https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/schemas/v2.0/schema.json",
+    "new-component": "yarn hygen component new",
+    "new-page": "yarn hygen page new"
   },
   "dependencies": {
     "@alova/adapter-axios": "^1.1.1",
