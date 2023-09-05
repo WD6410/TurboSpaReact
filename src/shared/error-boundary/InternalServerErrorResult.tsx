@@ -14,7 +14,7 @@ export const InternalServerErrorResult = () => {
         'It sounds like something unexpected happened right now. Please, inform our support team about this issue ASAP!'
       }
     >
-      <Button onClick={() => navigate(pathRouter.Home)} color='red'>
+      <Button onClick={() => navigate(pathRouter.HomePage)} color='red'>
         Go home
       </Button>
     </Result>

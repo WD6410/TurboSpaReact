@@ -16,7 +16,7 @@ export function ProfilePage() {
       />
       <Stack>
         <Text>
-          {t('common:welcome')} {user?.email}
+          {t('welcome')} {user?.email}
         </Text>
         <Avatar src={user?.avatarUrl} alt="it's me" />
       </Stack>

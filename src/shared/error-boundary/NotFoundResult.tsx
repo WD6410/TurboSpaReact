@@ -14,7 +14,7 @@ export const NotFoundResult = () => {
         'Probably you got here by accident. If you think there is something wrong on our side, please contact us!'
       }
     >
-      <Button onClick={() => navigate(pathRouter.Home)} color='orange'>
+      <Button onClick={() => navigate(pathRouter.HomePage)} color='orange'>
         Go home
       </Button>
     </Result>

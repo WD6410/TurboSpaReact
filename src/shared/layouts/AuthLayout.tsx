@@ -29,7 +29,7 @@ export function AuthLayout() {
   };
 
   if (!isAuthentication) {
-    return <Navigate to={pathRouter.SignIn} />;
+    return <Navigate to={pathRouter.SignInPage} />;
   }
   return (
     <AppShell

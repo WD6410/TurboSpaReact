@@ -1,7 +1,7 @@
 ---
 inject: true
 to: src/shared/components/index.ts
-before: export
+append: true
 sh: yarn prettier
 ---
 

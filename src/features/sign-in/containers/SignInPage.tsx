@@ -23,7 +23,7 @@ export function SignInPage() {
       const resultSignIn = await sendSignIn(data);
       setToken(resultSignIn.token);
       setUser(resultSignIn.user);
-      navigate(pathRouter.Home);
+      navigate(pathRouter.HomePage);
     } catch (error) {
       notifications.show({
         message: _.get(

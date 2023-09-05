@@ -6,7 +6,7 @@ export function EmptyLayout() {
   const { isAuthentication } = useAuthStore();
 
   if (isAuthentication) {
-    return <Navigate to={pathRouter.Home} />;
+    return <Navigate to={pathRouter.HomePage} />;
   }
   return <Outlet />;
 }
