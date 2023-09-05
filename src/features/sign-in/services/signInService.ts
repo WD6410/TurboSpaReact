@@ -1,9 +1,12 @@
 import { alovaInstance } from 'shared/config/apiConfig.ts';
-import { endpointApi } from 'shared/config/constants';
+import { USER_ROLES, endpointApi } from 'shared/config/constants';
+
+export type IUserRoles = keyof typeof USER_ROLES;
 
 export type IUser = {
   email: string;
   avatarUrl: string;
+  roles: IUserRoles[];
 };
 
 export type IUserWithPw = IUser & { password: string };

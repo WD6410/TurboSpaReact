@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import Turbo from '../../../../turbo.json';
 
 interface ISeoProps {
   title: string;
@@ -9,7 +10,9 @@ interface ISeoProps {
 export default function Seo({ title, description, type }: ISeoProps) {
   return (
     <Helmet>
-      <title>{title} | Turbo</title>
+      <title>
+        {title} | {Turbo.displayName}
+      </title>
       <meta name='description' content={description} />
 
       <meta property='og:type' content={type} />

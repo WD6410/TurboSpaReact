@@ -13,8 +13,16 @@ export const endpointApi = {
   signIn: '/sign-in',
   whoami: '/me',
   tasks: '/tasks',
-};
+} as const;
 
 // REGEX
 
 export const regexEmail = /^\S+@\S+$/;
+
+// USER ROLES
+
+export const USER_ROLES = {
+  ADMIN: 'ADMIN',
+  USER: 'USER',
+  SUPER_ADMIN: 'SUPER_ADMIN',
+} as const;

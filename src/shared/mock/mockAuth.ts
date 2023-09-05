@@ -1,6 +1,7 @@
 import { defineMock } from '@alova/mock';
 import CryptoJS from 'crypto-js';
 import _ from 'lodash-es';
+import { USER_ROLES } from 'shared/config/constants';
 
 const mockUser = new Map();
 export const private_key = 'private_key';
@@ -10,6 +11,7 @@ mockUser.set('truongdq.dev@gmail.com', {
   email: 'truongdq.dev@gmail.com',
   avatarUrl:
     'https://avatars.githubusercontent.com/u/10353856?s=460&u=88394dfd67727327c1f7670a1764dc38a8a24831&v=4',
+  roles: [USER_ROLES.USER],
 });
 
 export const mockSignIn = defineMock({

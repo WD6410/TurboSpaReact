@@ -52,6 +52,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "husky": "^8.0.3",
+    "hygen": "^6.2.11",
     "i18next": "^22.4.10",
     "immer": "^10.0.2",
     "lint-staged": "^13.2.2",

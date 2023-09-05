@@ -39,7 +39,7 @@ export function TasksPage() {
   return (
     <Box>
       <Seo
-        title={t('sidebar:tasks')}
+        title={t('tasks')}
         description='A template code react common and reuse <3'
         type='preview'
       />

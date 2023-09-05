@@ -1,5 +1,6 @@
 {
   "prefixEnv": "TURBO",
+  "displayName": "Turbo",
   "mode": "development",
   "envMode": [
     "production",

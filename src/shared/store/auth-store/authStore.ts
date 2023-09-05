@@ -40,6 +40,8 @@ export const useAuthStore = create<IAuthStore>((set) => ({
       useGlobalStore.getState().startup();
       try {
         const whoami = await whoamiApi().send();
+        console.log('whoami', whoami);
+
         set({ user: whoami.user, token, isAuthentication: true });
       } catch (error) {
         notifications.show({
