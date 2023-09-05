@@ -21,6 +21,7 @@ export default use(initReactI18next).init({
   lng: 'vi',
   fallbackLng: 'vi',
   compatibilityJSON: 'v3',
+  nsSeparator: '.',
   react: { useSuspense: true },
   debug: envConfig.turboNodeEnv !== 'production',
   returnObjects: false,
