@@ -10,6 +10,7 @@ A project that provides libraries and structures available for react.
 - Auto generate env file by config turbo.json.
 - Auto generate assets (icons,images, fonts).
 - Auto generate page includes (container, component, service, loader, route, model, services).
+- Extend generate page and auto create CRUD api and view sample.
 - Config eslint + prettier.
 - Theme UI mantine.
 - Config scss module.
@@ -63,6 +64,12 @@ Generate new page
 
 ```bash
   yarn new-page <name>
+```
+
+Generate new page with crud
+
+```bash
+  yarn crud <name>
 ```
 
 Start dev
