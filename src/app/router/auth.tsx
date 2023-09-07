@@ -1,3 +1,5 @@
+import { productsRoute } from 'features/products/route';
+
 import { templatesRoute } from 'features/templates/route';
 import { discussionsRoute } from 'features/discussions/route';
 import { employeesRoute } from 'features/employees/route';
@@ -15,4 +17,5 @@ export const auth: RouteObject[] = [
   ...employeesRoute,
   ...discussionsRoute,
   ...templatesRoute,
+  ...productsRoute,
 ];

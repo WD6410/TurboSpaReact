@@ -29,7 +29,7 @@ export const mock<%= h.inflection.camelize(name) %> = defineMock({
     return store[index];
   },
   '[POST]/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>': ({ data }) => {
-    const lastId = Number(store[store.length - 1].id ?? 0);
+    const lastId = Number(store[store.length - 1]?.id ?? 0);
     const newData = {
       ...data,
       createdAt: new Date().toISOString(),

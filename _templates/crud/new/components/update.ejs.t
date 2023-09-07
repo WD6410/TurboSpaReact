@@ -1,5 +1,5 @@
 ---
-to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/index.ts
+to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/Update<%= h.inflection.camelize(name) %>.tsx
 ---
 
 import {
@@ -7,7 +7,6 @@ import {
   Box,
   Button,
   Group,
-  Select,
   TextInput,
 } from '@mantine/core';
 import { IconEdit } from '@tabler/icons-react';
@@ -28,28 +27,24 @@ type Update<%= h.inflection.camelize(name) %>Props = {
   data: <%= h.inflection.camelize(name) %>;
 };
 
-export const UpdateEmployees = ({
+export const Update<%= h.inflection.camelize(name) %> = ({
   onSuccess,
   data,
 }: Update<%= h.inflection.camelize(name) %>Props) => {
   const [isOpen, { open, close }] = useDisclosure(false);
 
   const { loading, send: updateApi } = useRequest(
-    (payload) => <%= h.inflection.camelize(name, true) %>Service.update<%= h.inflection.camelize(name) %>(employee.id, payload),
+    (payload) => <%= h.inflection.camelize(name, true) %>Service.update<%= h.inflection.camelize(name) %>(data.id, payload),
     { immediate: false },
   );
 
-  const updateForm = useForm<UpdateEmployeesRequest>({
+  const updateForm = useForm<Update<%= h.inflection.camelize(name) %>Request>({
     initialValues: {
       name: '',
-      address: '',
-      position: '',
     },
 
     validate: {
       name: (value) => (value.length ? null : 'name not empty'),
-      address: (value) => (value.length ? null : 'address not empty'),
-      position: (value) => (value.length ? null : 'position not empty'),
     },
   });
 
@@ -69,7 +64,7 @@ export const UpdateEmployees = ({
             message: get(
               error,
               'message',
-              'Đã có lỗi sảy ra, vui lòng thử lại sau!',
+              'Something went wrong, please try again later!',
             ),
             color: 'red',
           });
@@ -83,9 +78,7 @@ export const UpdateEmployees = ({
 
   const handleOpen = () => {
     updateForm.setValues({
-      name: employee.name,
-      address: employee.address,
-      position: employee.position,
+      name: data.name,
     });
     open();
   };
@@ -101,7 +94,7 @@ export const UpdateEmployees = ({
           close();
           updateForm.reset();
         }}
-        title={`Update employee ${employee.name}`}
+        title={`Update employee ${data.name}`}
       >
         <Box mx='auto' w={'100%'}>
           <form onSubmit={handleUpdate}>
@@ -110,25 +103,6 @@ export const UpdateEmployees = ({
               label='Name'
               placeholder='enter name'
               {...updateForm.getInputProps('name')}
-            />
-
-            <TextInput
-              withAsterisk
-              label='Address'
-              placeholder='enter address'
-              {...updateForm.getInputProps('address')}
-            />
-
-            <Select
-              withAsterisk
-              label='Postion'
-              placeholder='Select postion'
-              data={Object.entries(mockPosition).map(([key, value]) => ({
-                value: key,
-                label: value,
-              }))}
-              withinPortal
-              {...updateForm.getInputProps('position')}
             />
 
             <Group position='right' mt='md'>

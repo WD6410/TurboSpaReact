@@ -1,34 +1,29 @@
----
-to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/Create<%= h.inflection.camelize(name) %>.tsx
----
-
-
 import { Box, Button, Group, TextInput } from '@mantine/core';
 import { IconPlus } from '@tabler/icons-react';
 import { ExtendModal } from 'shared/components';
 import { useDisclosure } from '@mantine/hooks';
 import { useRequest } from 'alova';
 import {
-  Create<%= h.inflection.camelize(name) %>Request,
-  <%= h.inflection.camelize(name, true) %>Service,
-} from '../services/<%= h.inflection.camelize(name, true) %>Service.ts';
+  CreateProductsRequest,
+  productsService,
+} from '../services/productsService.ts';
 import { notifications } from '@mantine/notifications';
 import { get } from 'lodash-es';
 import { useForm } from '@mantine/form';
 
-type Create<%= h.inflection.camelize(name) %>Props = {
+type CreateProductsProps = {
   onSuccess: () => void;
 };
 
-export const Create<%= h.inflection.camelize(name) %> = ({ onSuccess }: Create<%= h.inflection.camelize(name) %>Props) => {
+export const CreateProducts = ({ onSuccess }: CreateProductsProps) => {
   const [isOpen, { open, close }] = useDisclosure(false);
 
   const { loading, send: createApi } = useRequest(
-    (payload) => <%= h.inflection.camelize(name, true) %>Service.create<%= h.inflection.camelize(name) %>(payload),
+    (payload) => productsService.createProducts(payload),
     { immediate: false },
   );
 
-  const createForm = useForm<Create<%= h.inflection.camelize(name) %>Request>({
+  const createForm = useForm<CreateProductsRequest>({
     initialValues: {
       name: '',
     },
@@ -76,7 +71,7 @@ export const Create<%= h.inflection.camelize(name) %> = ({ onSuccess }: Create<%
           close();
           createForm.reset();
         }}
-        title={'Create new <%= h.inflection.camelize(name) %>'}
+        title={'Create new Products'}
       >
         <Box mx='auto' w={'100%'}>
           <form onSubmit={handleCreate}>

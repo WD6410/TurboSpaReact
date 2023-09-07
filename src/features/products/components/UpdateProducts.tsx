@@ -1,48 +1,46 @@
----
-to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/Create<%= h.inflection.camelize(name) %>.tsx
----
-
-
-import { Box, Button, Group, TextInput } from '@mantine/core';
-import { IconPlus } from '@tabler/icons-react';
+import { ActionIcon, Box, Button, Group, TextInput } from '@mantine/core';
+import { IconEdit } from '@tabler/icons-react';
 import { ExtendModal } from 'shared/components';
 import { useDisclosure } from '@mantine/hooks';
 import { useRequest } from 'alova';
 import {
-  Create<%= h.inflection.camelize(name) %>Request,
-  <%= h.inflection.camelize(name, true) %>Service,
-} from '../services/<%= h.inflection.camelize(name, true) %>Service.ts';
+  UpdateProductsRequest,
+  productsService,
+} from '../services/productsService.ts';
 import { notifications } from '@mantine/notifications';
 import { get } from 'lodash-es';
 import { useForm } from '@mantine/form';
+import { Products } from '../model';
 
-type Create<%= h.inflection.camelize(name) %>Props = {
+type UpdateProductsProps = {
   onSuccess: () => void;
+  data: Products;
 };
 
-export const Create<%= h.inflection.camelize(name) %> = ({ onSuccess }: Create<%= h.inflection.camelize(name) %>Props) => {
+export const UpdateProducts = ({ onSuccess, data }: UpdateProductsProps) => {
   const [isOpen, { open, close }] = useDisclosure(false);
 
-  const { loading, send: createApi } = useRequest(
-    (payload) => <%= h.inflection.camelize(name, true) %>Service.create<%= h.inflection.camelize(name) %>(payload),
+  const { loading, send: updateApi } = useRequest(
+    (payload) => productsService.updateProducts(data.id, payload),
     { immediate: false },
   );
 
-  const createForm = useForm<Create<%= h.inflection.camelize(name) %>Request>({
+  const updateForm = useForm<UpdateProductsRequest>({
     initialValues: {
       name: '',
     },
+
     validate: {
       name: (value) => (value.length ? null : 'name not empty'),
     },
   });
 
-  const handleCreate = (e: any) => {
-    createForm.onSubmit((values) => {
-      createApi(values)
+  const handleUpdate = (e: any) => {
+    updateForm.onSubmit((values) => {
+      updateApi(values)
         .then(() => {
           notifications.show({
-            message: 'Create success!',
+            message: 'Update success!',
             color: 'green',
           });
           onSuccess();
@@ -60,32 +58,40 @@ export const Create<%= h.inflection.camelize(name) %> = ({ onSuccess }: Create<%
         })
         .finally(() => {
           close();
-          createForm.reset();
+          updateForm.reset();
         });
     })(e);
   };
 
+  const handleOpen = () => {
+    updateForm.setValues({
+      name: data.name,
+    });
+    open();
+  };
+
   return (
     <Box>
-      <Button fullWidth leftIcon={<IconPlus />} onClick={open}>
-        Create
-      </Button>
+      <ActionIcon color='blue' onClick={handleOpen}>
+        <IconEdit size={16} />
+      </ActionIcon>
       <ExtendModal
         opened={isOpen}
         onClose={() => {
           close();
-          createForm.reset();
+          updateForm.reset();
         }}
-        title={'Create new <%= h.inflection.camelize(name) %>'}
+        title={`Update employee ${data.name}`}
       >
         <Box mx='auto' w={'100%'}>
-          <form onSubmit={handleCreate}>
+          <form onSubmit={handleUpdate}>
             <TextInput
               withAsterisk
               label='Name'
               placeholder='enter name'
-              {...createForm.getInputProps('name')}
+              {...updateForm.getInputProps('name')}
             />
+
             <Group position='right' mt='md'>
               <Button disabled={loading} type='submit'>
                 Submit

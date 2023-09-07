@@ -14,7 +14,8 @@ export const endpointApi = {
   whoami: '/me',
   tasks: '/tasks',
   employees: '/employees',
-  network: '/network',
+
+  products: '/products',
 
   // endpoint_api
 } as const;
