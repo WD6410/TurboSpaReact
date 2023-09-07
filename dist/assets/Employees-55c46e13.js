@@ -1,1 +1,0 @@
-import{i as e,j as s}from"./index-16f984d1.js";const o="i",n="j",m={row:o,employees:n},t=e();function c(l){return s.jsxs("div",{className:t(m.employees),children:["Employees",s.jsx("h1",{children:"Employees"})]})}const r=c;export{r as Component,c as EmployeesPage};

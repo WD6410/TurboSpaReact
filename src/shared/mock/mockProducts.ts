@@ -22,7 +22,7 @@ export const mockProducts = defineMock({
     };
   },
   '/products/{id}': ({ params }) => {
-    const index = store.findIndex((item) => item.id === params?.id);
+    const index = store.findIndex((item) => item.id === params.id);
     return store[index];
   },
   '[POST]/products': ({ data }) => {
@@ -37,7 +37,7 @@ export const mockProducts = defineMock({
     return data;
   },
   '[PUT]/products/{id}': ({ data, params }) => {
-    const index = store.findIndex((item) => item.id === params?.id);
+    const index = store.findIndex((item) => item.id === params.id);
     const updatedData = {
       ...store[index],
       ...data,
@@ -47,7 +47,7 @@ export const mockProducts = defineMock({
     return params.id;
   },
   '[DELETE]/products/{id}': ({ params }) => {
-    const index = store.findIndex((item) => item.id === params?.id);
+    const index = store.findIndex((item) => item.id === params.id);
     store.splice(index, 1);
     return params.id;
   },

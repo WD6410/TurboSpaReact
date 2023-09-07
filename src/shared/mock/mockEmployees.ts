@@ -1,26 +1,7 @@
 import { defineMock } from '@alova/mock';
 import { Employees } from 'features/employees/model';
 
-export const mockPosition = {
-  Developer: 'Developer',
-  Leader: 'Leader',
-  Tester: 'Tester',
-  BA: 'BA',
-  PM: 'PM',
-};
-
-const store: List<Employees> = [
-  {
-    id: '1',
-    name: 'Truong',
-    email: 'truongdq.dev@gmail.com',
-    phone: '0123456789',
-    address: 'Ha Noi',
-    position: mockPosition.Developer,
-    createdAt: '2021-09-01T00:00:00.000Z',
-    updatedAt: '2021-09-01T00:00:00.000Z',
-  },
-];
+const store: List<Employees> = [];
 
 export const mockEmployees = defineMock({
   '/employees': ({ query }) => {
@@ -32,6 +13,7 @@ export const mockEmployees = defineMock({
     const data = store
       .filter((item) => item.name.includes(q))
       .slice(start, end);
+
     return {
       data,
       total,
@@ -44,7 +26,7 @@ export const mockEmployees = defineMock({
     return store[index];
   },
   '[POST]/employees': ({ data }) => {
-    const lastId = Number(store[store.length - 1].id ?? 0);
+    const lastId = Number(store[store.length - 1]?.id ?? 0);
     const newData = {
       ...data,
       createdAt: new Date().toISOString(),

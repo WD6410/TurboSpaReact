@@ -1,1 +1,0 @@
-import{i as o,j as s}from"./index-16f984d1.js";const n="_",i="a",c={row:n,discussions:i},t=o();function e(r){return s.jsxs("div",{className:t(c.discussions),children:["Discussions",s.jsx("h1",{children:"Discussions"})]})}const u=e;export{u as Component,e as DiscussionsPage};

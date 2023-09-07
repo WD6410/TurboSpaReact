@@ -1,5 +1,6 @@
 ---
 to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/index.ts
+sh: npx prettier --write src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/index.ts
 ---
 export * from './Create<%= h.inflection.camelize(name) %>.tsx';
 export * from './Detail<%= h.inflection.camelize(name) %>.tsx';

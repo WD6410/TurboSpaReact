@@ -13,15 +13,14 @@ export const alovaInstance = createAlova({
   statesHook: ReactHook,
 
   // request adapter, it is recommended to use the fetch request adapter
-  requestAdapter:
-    envConfig.turboNodeEnv === 'development'
-      ? createAlovaMockAdapter(mocks, {
-          httpAdapter: axiosRequestAdapter(),
-          delay: 1500,
-          mockRequestLogger: true,
-          ...axiosMockResponse,
-        })
-      : axiosRequestAdapter(),
+  requestAdapter: envConfig.turboNodeEnv
+    ? createAlovaMockAdapter(mocks, {
+        httpAdapter: axiosRequestAdapter(),
+        delay: 1500,
+        mockRequestLogger: true,
+        ...axiosMockResponse,
+      })
+    : axiosRequestAdapter(),
 
   baseURL: envConfig.turboApiUrl,
 

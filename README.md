@@ -110,6 +110,8 @@ Build storybook
 .
 ├── README.md
 ├── _templates
+│   ├── crud
+│   │   └── new
 │   ├── component
 │   │   └── new
 │   ├── init

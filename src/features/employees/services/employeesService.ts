@@ -8,13 +8,10 @@ export type CreateEmployeesRequest = Omit<
   'id' | 'createdAt' | 'updatedAt'
 >;
 
-export type UpdateEmployeesRequest = Pick<
-  Employees,
-  'name' | 'address' | 'position'
->;
+export type UpdateEmployeesRequest = Pick<Employees, 'name'>;
 
 export const employeesService = {
-  getEmployees: (query: IBaseQuery) => {
+  getEmployeesList: (query: IBaseQuery) => {
     return alovaInstance.Get(
       `${endpointApi.employees}?${queryString.stringify(query)}`,
       {
@@ -27,20 +24,20 @@ export const employeesService = {
       },
     );
   },
-  getEmployee: (id: string) => {
+  getEmployees: (id: string) => {
     return alovaInstance.Get(`${endpointApi.employees}/${id}`, {
       transformData: (data: Employees) => {
         return new EmployeesModel(data);
       },
     });
   },
-  createEmployee: (data: CreateEmployeesRequest) => {
+  createEmployees: (data: CreateEmployeesRequest) => {
     return alovaInstance.Post(endpointApi.employees, data);
   },
-  updateEmployee: (id: string, data: UpdateEmployeesRequest) => {
+  updateEmployees: (id: string, data: UpdateEmployeesRequest) => {
     return alovaInstance.Put(`${endpointApi.employees}/${id}`, data);
   },
-  deleteEmployee: (id: string) => {
+  deleteEmployees: (id: string) => {
     return alovaInstance.Delete(`${endpointApi.employees}/${id}`);
   },
 };

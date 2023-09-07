@@ -6,7 +6,7 @@ export const employeesRoute: RouteObject[] = [
   {
     path: pathRouter.EmployeesPage,
     index: true,
-    lazy: () => import('../containers/Employees.tsx'),
+    lazy: () => import('../containers/EmployeesPage.tsx'),
     loader: employeesLoader,
   },
 ];

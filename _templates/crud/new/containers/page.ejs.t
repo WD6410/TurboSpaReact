@@ -1,5 +1,6 @@
 ---
 to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/containers/<%=name%>Page.tsx
+sh: npx prettier --write src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/containers/<%=name%>Page.tsx
 ---
 
 import { classNamesFunc } from 'classnames-generics';

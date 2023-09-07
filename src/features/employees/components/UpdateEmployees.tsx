@@ -1,52 +1,37 @@
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Group,
-  Select,
-  TextInput,
-} from '@mantine/core';
+import { ActionIcon, Box, Button, Group, TextInput } from '@mantine/core';
 import { IconEdit } from '@tabler/icons-react';
 import { ExtendModal } from 'shared/components';
 import { useDisclosure } from '@mantine/hooks';
 import { useRequest } from 'alova';
 import {
-  employeesService,
   UpdateEmployeesRequest,
+  employeesService,
 } from '../services/employeesService.ts';
 import { notifications } from '@mantine/notifications';
 import { get } from 'lodash-es';
 import { useForm } from '@mantine/form';
-import { mockPosition } from 'shared/mock/mockEmployees.ts';
 import { Employees } from '../model';
 
 type UpdateEmployeesProps = {
   onSuccess: () => void;
-  employee: Employees;
+  data: Employees;
 };
 
-export const UpdateEmployees = ({
-  onSuccess,
-  employee,
-}: UpdateEmployeesProps) => {
+export const UpdateEmployees = ({ onSuccess, data }: UpdateEmployeesProps) => {
   const [isOpen, { open, close }] = useDisclosure(false);
 
   const { loading, send: updateApi } = useRequest(
-    (payload) => employeesService.updateEmployee(employee.id, payload),
+    (payload) => employeesService.updateEmployees(data.id, payload),
     { immediate: false },
   );
 
   const updateForm = useForm<UpdateEmployeesRequest>({
     initialValues: {
       name: '',
-      address: '',
-      position: '',
     },
 
     validate: {
       name: (value) => (value.length ? null : 'name not empty'),
-      address: (value) => (value.length ? null : 'address not empty'),
-      position: (value) => (value.length ? null : 'position not empty'),
     },
   });
 
@@ -66,7 +51,7 @@ export const UpdateEmployees = ({
             message: get(
               error,
               'message',
-              'Đã có lỗi sảy ra, vui lòng thử lại sau!',
+              'Something went wrong, please try again later!',
             ),
             color: 'red',
           });
@@ -80,9 +65,7 @@ export const UpdateEmployees = ({
 
   const handleOpen = () => {
     updateForm.setValues({
-      name: employee.name,
-      address: employee.address,
-      position: employee.position,
+      name: data.name,
     });
     open();
   };
@@ -98,7 +81,7 @@ export const UpdateEmployees = ({
           close();
           updateForm.reset();
         }}
-        title={`Update employee ${employee.name}`}
+        title={`Update employee ${data.name}`}
       >
         <Box mx='auto' w={'100%'}>
           <form onSubmit={handleUpdate}>
@@ -107,25 +90,6 @@ export const UpdateEmployees = ({
               label='Name'
               placeholder='enter name'
               {...updateForm.getInputProps('name')}
-            />
-
-            <TextInput
-              withAsterisk
-              label='Address'
-              placeholder='enter address'
-              {...updateForm.getInputProps('address')}
-            />
-
-            <Select
-              withAsterisk
-              label='Postion'
-              placeholder='Select postion'
-              data={Object.entries(mockPosition).map(([key, value]) => ({
-                value: key,
-                label: value,
-              }))}
-              withinPortal
-              {...updateForm.getInputProps('position')}
             />
 
             <Group position='right' mt='md'>

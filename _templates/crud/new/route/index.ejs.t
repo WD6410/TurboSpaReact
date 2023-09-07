@@ -1,5 +1,6 @@
 ---
 to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/route/index.ts
+sh: npx prettier --write src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/route/index.ts
 ---
 
 import type { RouteObject } from 'react-router-dom';

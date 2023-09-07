@@ -1,5 +1,6 @@
 ---
 to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/Detail<%= h.inflection.camelize(name) %>.tsx
+sh: npx prettier --write src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/Detail<%= h.inflection.camelize(name) %>.tsx
 ---
 import { ActionIcon, Flex, Skeleton, Stack } from '@mantine/core';
 import { IconEye } from '@tabler/icons-react';

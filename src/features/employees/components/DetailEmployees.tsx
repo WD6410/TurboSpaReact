@@ -7,29 +7,13 @@ import { useRequest } from 'alova';
 import { employeesService } from '../services/employeesService.ts';
 
 type DetailEmployeesProps = {
-  employee: Employees;
+  data: Employees;
 };
 
 const mapping = [
   {
     label: 'Name',
     key: 'name',
-  },
-  {
-    label: 'Email',
-    key: 'email',
-  },
-  {
-    label: 'Phone',
-    key: 'phone',
-  },
-  {
-    label: 'Address',
-    key: 'address',
-  },
-  {
-    label: 'Position',
-    key: 'position',
   },
   {
     label: 'Create At',
@@ -41,11 +25,11 @@ const mapping = [
   },
 ] as List<ItemInfo<keyof Employees>>;
 
-export const DetailEmployees = ({ employee }: DetailEmployeesProps) => {
+export const DetailEmployees = ({ data }: DetailEmployeesProps) => {
   const [isOpen, { open, close }] = useDisclosure(false);
 
-  const { loading, data } = useRequest(
-    () => employeesService.getEmployee(employee.id),
+  const { loading, data: detail } = useRequest(
+    () => employeesService.getEmployees(data?.id),
     {
       immediate: true,
     },
@@ -59,7 +43,7 @@ export const DetailEmployees = ({ employee }: DetailEmployeesProps) => {
       <ExtendModal
         opened={isOpen}
         onClose={close}
-        title={`Detail [${employee?.name}]`}
+        title={`Detail [${data?.name}]`}
       >
         {loading ? (
           <Stack w={'100%'}>
@@ -71,8 +55,8 @@ export const DetailEmployees = ({ employee }: DetailEmployeesProps) => {
           <Stack w={'100%'}>
             {mapping.map((item) => (
               <Flex key={item.label} justify={'space-between'}>
-                <span style={{ fontWeight: 'bold' }}>{item.label}:</span>
-                <span>{data[item.key]}</span>
+                <span style={{ fontWeight: 'bold' }}>{item?.label}:</span>
+                <span>{detail?.[item?.key]}</span>
               </Flex>
             ))}
           </Stack>

@@ -1,0 +1,1 @@
+import{c as e,j as s}from"./index-8389bfe9.js";const t="i",a="j",o={row:t,templates:a},n=e();function c(m){return s.jsxs("div",{className:n(o.templates),children:["Templates",s.jsx("h1",{children:"Templates"})]})}const p=c;export{p as Component,c as TemplatesPage};

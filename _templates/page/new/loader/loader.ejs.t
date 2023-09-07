@@ -1,5 +1,6 @@
 ---
 to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/loader/<%= h.inflection.camelize(name, true) %>Loader.ts
+sh: npx prettier --write src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/loader/<%= h.inflection.camelize(name, true) %>Loader.ts
 ---
 
 import type { LoaderFunctionArgs } from 'react-router-dom';

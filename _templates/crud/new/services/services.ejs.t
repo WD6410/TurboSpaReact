@@ -1,5 +1,6 @@
 ---
 to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/services/<%= h.inflection.camelize(name, true) %>Service.ts
+sh: npx prettier --write src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/services/<%= h.inflection.camelize(name, true) %>Service.ts
 ---
 
 import { alovaInstance } from 'shared/config/apiConfig.ts';

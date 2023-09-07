@@ -32,7 +32,7 @@ export function EmployeesPage(_props: IEmployeesProps) {
     refresh,
   } = usePagination(
     (page, pageSize) =>
-      employeesService.getEmployees({ page, pageSize, q: query }),
+      employeesService.getEmployeesList({ page, pageSize, q: query }),
     {
       watchingStates: [query],
       debounce: 1000,
@@ -51,9 +51,10 @@ export function EmployeesPage(_props: IEmployeesProps) {
 
   return (
     <div className={classNames(styles['employees'])}>
+      Employees
       <Seo
         title={'Employees'}
-        description='Page generate for employees'
+        description='Page generate for Employees'
         type='preview'
       />
       <h1>Employees</h1>
@@ -106,26 +107,16 @@ export function EmployeesPage(_props: IEmployeesProps) {
             render: (record) => data.indexOf(record) + 1,
           },
           { accessor: 'name' },
-          { accessor: 'email' },
-          { accessor: 'phone' },
-          { accessor: 'address' },
-          { accessor: 'position' },
           { accessor: 'createdAt' },
           { accessor: 'updatedAt' },
           {
             accessor: 'Actions',
             textAlignment: 'right',
-            render: (employee) => (
+            render: (data) => (
               <Group spacing={4} position='right' noWrap>
-                <DetailEmployees employee={employee} />
-                <UpdateEmployees
-                  employee={employee}
-                  onSuccess={() => refresh(1)}
-                />
-                <DeleteEmployees
-                  employee={employee}
-                  onSuccess={() => refresh(1)}
-                />
+                <DetailEmployees data={data} />
+                <UpdateEmployees data={data} onSuccess={() => refresh(1)} />
+                <DeleteEmployees data={data} onSuccess={() => refresh(1)} />
               </Group>
             ),
           },

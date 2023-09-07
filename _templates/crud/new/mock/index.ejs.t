@@ -1,5 +1,6 @@
 ---
 to: src/shared/mock/mock<%= h.inflection.camelize(name) %>.ts
+sh: npx prettier --write src/shared/mock/mock<%= h.inflection.camelize(name) %>.ts
 ---
 import { defineMock } from '@alova/mock';
 import { <%= h.inflection.camelize(name) %> } from 'features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/model';

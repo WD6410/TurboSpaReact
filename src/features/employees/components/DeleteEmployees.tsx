@@ -9,23 +9,20 @@ import { notifications } from '@mantine/notifications';
 import { get } from 'lodash-es';
 
 type DeleteEmployeesProps = {
-  employee: Employees;
+  data: Employees;
   onSuccess: () => void;
 };
 
-export const DeleteEmployees = ({
-  employee,
-  onSuccess,
-}: DeleteEmployeesProps) => {
+export const DeleteEmployees = ({ data, onSuccess }: DeleteEmployeesProps) => {
   const [isOpen, { open, close }] = useDisclosure(false);
 
   const { loading, send: deleteApi } = useRequest(
-    (id) => employeesService.deleteEmployee(id),
+    (id) => employeesService.deleteEmployees(id),
     { immediate: false },
   );
 
   const handleDelete = () => {
-    deleteApi(employee?.id)
+    deleteApi(data?.id)
       .then(() => {
         close();
         onSuccess();
@@ -39,7 +36,7 @@ export const DeleteEmployees = ({
           message: get(
             error,
             'message',
-            'Đã có lỗi sảy ra, vui lòng thử lại sau!',
+            'Something went wrong, please try again later!',
           ),
           color: 'red',
         });
@@ -54,7 +51,7 @@ export const DeleteEmployees = ({
       <ExtendModal
         opened={isOpen}
         onClose={close}
-        title={`Delete ${employee?.name}`}
+        title={`Delete ${data?.name}`}
       >
         <Button disabled={loading} onClick={handleDelete} color='red'>
           OK

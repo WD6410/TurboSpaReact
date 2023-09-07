@@ -1,5 +1,6 @@
 ---
 to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/Delete<%= h.inflection.camelize(name) %>.tsx
+sh: npx prettier --write src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/components/Delete<%= h.inflection.camelize(name) %>.tsx
 ---
 import { ActionIcon, Button } from '@mantine/core';
 import { IconTrash } from '@tabler/icons-react';
