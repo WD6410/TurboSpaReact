@@ -35,7 +35,9 @@ export const alovaInstance = createAlova({
   },
   storageAdapter: sessionStorageAdapter,
   errorLogger(error, methodInstance) {
-    reportError(`${methodInstance.url}: ${error.message}`);
+    reportError(
+      `[${methodInstance.type}]${methodInstance.url}: ${error.message}`,
+    );
   },
   responded: {
     onSuccess(response) {

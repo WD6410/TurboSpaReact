@@ -1,5 +1,5 @@
 ---
-to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/containers/<%=name%>.tsx
+to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/containers/<%=name%>Page.tsx
 ---
 
 import { classNamesFunc } from 'classnames-generics';

@@ -13,6 +13,11 @@ export const endpointApi = {
   signIn: '/sign-in',
   whoami: '/me',
   tasks: '/tasks',
+  employees: '/employees',
+
+  products: '/products',
+
+  // endpoint_api
 } as const;
 
 // REGEX

@@ -6,7 +6,7 @@ export const pathRouter = {
   TemplatesPage: '/templates',
   ProfilePage: '/profile',
   SignInPage: '/sign-in',
-  EmployeeManagerPage: '/employee-manager',
   ShopManagerPage: '/shop-manager',
   NetworkPage: '/network',
+  ProductsPage: '/products',
 };

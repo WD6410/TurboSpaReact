@@ -1,27 +1,31 @@
+---
+to: src/features/<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>/containers/<%=name%>Page.tsx
+---
+
 import { classNamesFunc } from 'classnames-generics';
-import styles from './Employees.module.scss';
+import styles from './<%=name%>.module.scss';
 import { usePagination } from '@alova/scene-react';
-import { employeesService } from '../services/employeesService.ts';
+import { <%= h.inflection.camelize(name, true) %>Service } from '../services/<%= h.inflection.camelize(name, true) %>Service.ts';
 import { DataTable } from 'mantine-datatable';
 import { ActionIcon, Flex, Group, Input } from '@mantine/core';
 import { IconSearch, IconX } from '@tabler/icons-react';
 import { Seo } from 'shared/components';
 import { useInputState } from '@mantine/hooks';
 import {
-  CreateEmployees,
-  DeleteEmployees,
-  DetailEmployees,
-  UpdateEmployees,
+  Create<%= h.inflection.camelize(name) %>,
+  Delete<%= h.inflection.camelize(name) %>,
+  Detail<%= h.inflection.camelize(name) %>,
+  Update<%= h.inflection.camelize(name) %>,
 } from '../components';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 
-interface IEmployeesProps {
+interface I<%= name %>Props {
   [x: string]: any;
   // declare props here
 }
 
-export function EmployeesPage(_props: IEmployeesProps) {
+export function <%=name%>Page(_props: I<%= name %>Props) {
   const [query, setQuery] = useInputState('');
 
   const {
@@ -32,7 +36,7 @@ export function EmployeesPage(_props: IEmployeesProps) {
     refresh,
   } = usePagination(
     (page, pageSize) =>
-      employeesService.getEmployees({ page, pageSize, q: query }),
+      <%= h.inflection.camelize(name, true) %>Service.get<%= h.inflection.camelize(name) %>List({ page, pageSize, q: query }),
     {
       watchingStates: [query],
       debounce: 1000,
@@ -50,13 +54,13 @@ export function EmployeesPage(_props: IEmployeesProps) {
   );
 
   return (
-    <div className={classNames(styles['employees'])}>
+    <div className={classNames(styles['<%= h.inflection.transform(name, ['underscore', 'dasherize']) %>'])}><%= name %>
       <Seo
-        title={'Employees'}
-        description='Page generate for employees'
+        title={'<%=name%>'}
+        description='Page generate for <%=name%>'
         type='preview'
       />
-      <h1>Employees</h1>
+      <h1><%=name%></h1>
       <Flex
         gap={10}
         sx={{
@@ -81,7 +85,7 @@ export function EmployeesPage(_props: IEmployeesProps) {
           onChange={setQuery}
         />
 
-        <CreateEmployees onSuccess={() => refresh(1)} />
+        <Create<%= h.inflection.camelize(name) %> onSuccess={() => refresh(1)} />
       </Flex>
       <DataTable
         withBorder
@@ -106,24 +110,20 @@ export function EmployeesPage(_props: IEmployeesProps) {
             render: (record) => data.indexOf(record) + 1,
           },
           { accessor: 'name' },
-          { accessor: 'email' },
-          { accessor: 'phone' },
-          { accessor: 'address' },
-          { accessor: 'position' },
           { accessor: 'createdAt' },
           { accessor: 'updatedAt' },
           {
             accessor: 'Actions',
             textAlignment: 'right',
-            render: (employee) => (
+            render: (data) => (
               <Group spacing={4} position='right' noWrap>
-                <DetailEmployees employee={employee} />
-                <UpdateEmployees
-                  employee={employee}
+                <Detail<%= h.inflection.camelize(name) %> data={data} />
+                <Update<%= h.inflection.camelize(name) %>
+                  data={data}
                   onSuccess={() => refresh(1)}
                 />
-                <DeleteEmployees
-                  employee={employee}
+                <Delete<%= h.inflection.camelize(name) %>
+                  data={data}
                   onSuccess={() => refresh(1)}
                 />
               </Group>
@@ -135,4 +135,4 @@ export function EmployeesPage(_props: IEmployeesProps) {
   );
 }
 
-export const Component = EmployeesPage;
+export const Component = <%=name%>Page;

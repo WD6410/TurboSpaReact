@@ -1,27 +1,27 @@
 import { classNamesFunc } from 'classnames-generics';
-import styles from './Employees.module.scss';
+import styles from './Products.module.scss';
 import { usePagination } from '@alova/scene-react';
-import { employeesService } from '../services/employeesService.ts';
+import { productsService } from '../services/productsService.ts';
 import { DataTable } from 'mantine-datatable';
 import { ActionIcon, Flex, Group, Input } from '@mantine/core';
 import { IconSearch, IconX } from '@tabler/icons-react';
 import { Seo } from 'shared/components';
 import { useInputState } from '@mantine/hooks';
 import {
-  CreateEmployees,
-  DeleteEmployees,
-  DetailEmployees,
-  UpdateEmployees,
+  CreateProducts,
+  DeleteProducts,
+  DetailProducts,
+  UpdateProducts,
 } from '../components';
 
 const classNames = classNamesFunc<keyof typeof styles>();
 
-interface IEmployeesProps {
+interface IProductsProps {
   [x: string]: any;
   // declare props here
 }
 
-export function EmployeesPage(_props: IEmployeesProps) {
+export function ProductsPage(_props: IProductsProps) {
   const [query, setQuery] = useInputState('');
 
   const {
@@ -32,7 +32,7 @@ export function EmployeesPage(_props: IEmployeesProps) {
     refresh,
   } = usePagination(
     (page, pageSize) =>
-      employeesService.getEmployees({ page, pageSize, q: query }),
+      productsService.getProductsList({ page, pageSize, q: query }),
     {
       watchingStates: [query],
       debounce: 1000,
@@ -50,13 +50,14 @@ export function EmployeesPage(_props: IEmployeesProps) {
   );
 
   return (
-    <div className={classNames(styles['employees'])}>
+    <div className={classNames(styles['products'])}>
+      Products
       <Seo
-        title={'Employees'}
-        description='Page generate for employees'
+        title={'Products'}
+        description='Page generate for Products'
         type='preview'
       />
-      <h1>Employees</h1>
+      <h1>Products</h1>
       <Flex
         gap={10}
         sx={{
@@ -81,7 +82,7 @@ export function EmployeesPage(_props: IEmployeesProps) {
           onChange={setQuery}
         />
 
-        <CreateEmployees onSuccess={() => refresh(1)} />
+        <CreateProducts onSuccess={() => refresh(1)} />
       </Flex>
       <DataTable
         withBorder
@@ -106,26 +107,16 @@ export function EmployeesPage(_props: IEmployeesProps) {
             render: (record) => data.indexOf(record) + 1,
           },
           { accessor: 'name' },
-          { accessor: 'email' },
-          { accessor: 'phone' },
-          { accessor: 'address' },
-          { accessor: 'position' },
           { accessor: 'createdAt' },
           { accessor: 'updatedAt' },
           {
             accessor: 'Actions',
             textAlignment: 'right',
-            render: (employee) => (
+            render: (data) => (
               <Group spacing={4} position='right' noWrap>
-                <DetailEmployees employee={employee} />
-                <UpdateEmployees
-                  employee={employee}
-                  onSuccess={() => refresh(1)}
-                />
-                <DeleteEmployees
-                  employee={employee}
-                  onSuccess={() => refresh(1)}
-                />
+                <DetailProducts data={data} />
+                <UpdateProducts data={data} onSuccess={() => refresh(1)} />
+                <DeleteProducts data={data} onSuccess={() => refresh(1)} />
               </Group>
             ),
           },
@@ -135,4 +126,4 @@ export function EmployeesPage(_props: IEmployeesProps) {
   );
 }
 
-export const Component = EmployeesPage;
+export const Component = ProductsPage;
