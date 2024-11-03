@@ -26,13 +26,13 @@ A project that provides libraries and structures available for react.
 Clone the project
 
 ```bash
-  git clone https://github.com/truongnat/turbo-spa-react.git
+  git clone https://github.com/WD6410/TurboSpaReact.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd turbo-spa-react
+  cd TurboSpaReact
 ```
 
 Install dependencies
